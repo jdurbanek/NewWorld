@@ -40,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:text="This Week"
                 android:id="@+id/week"
-                android:layout_weight="0.50" />
+                android:layout_weight="0.50"
+                android:onClick="launchCurrentWeek"/>
         </LinearLayout>
 
         <ProgressBar

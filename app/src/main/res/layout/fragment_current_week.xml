@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="project.mobile.newworld.CurrentWeek">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Week"
+            android:id="@+id/label"
+            android:textSize="25dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Other Weeks"
+            android:id="@+id/launchWeekly"
+            android:layout_gravity="center_horizontal" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="340dp"
+            android:id="@+id/listView2"
+            android:layout_weight="0.69" />
+
+        <Button
+            android:layout_width="79dp"
+            android:layout_height="35dp"
+            android:text="Home"
+            android:id="@+id/hButton"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</RelativeLayout>

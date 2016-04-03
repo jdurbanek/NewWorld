@@ -18,7 +18,8 @@
         <activity android:name=".OptionsScreen" />
         <activity android:name=".Base" />
         <activity android:name=".Battle" />
-        <activity android:name=".GoOut"></activity>
+        <activity android:name=".GoOut" />
+        <activity android:name=".MyWeek"></activity>
     </application>
 
 </manifest>
