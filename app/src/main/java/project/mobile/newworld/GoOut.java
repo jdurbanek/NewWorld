@@ -19,4 +19,8 @@ public class GoOut extends AppCompatActivity {
         Intent intent = new Intent(this, MyWeek.class);
         startActivity(intent);
     }
+    public void launchHomeScreen(View view) {
+        Intent intent = new Intent(this, OptionsScreen.class);
+        startActivity(intent);
+    }
 }

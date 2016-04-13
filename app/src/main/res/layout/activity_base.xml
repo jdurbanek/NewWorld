@@ -38,7 +38,8 @@
             android:layout_width="76dp"
             android:layout_height="35dp"
             android:text="Home"
-            android:id="@+id/homeButton" />
+            android:id="@+id/homeButton"
+            android:onClick="launchHomeScreen"/>
 
     </LinearLayout>
 </RelativeLayout>
