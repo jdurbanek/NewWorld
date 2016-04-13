@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:text="Launch"
         android:id="@+id/button"
+        android:layout_marginBottom="121dp"
+        android:onClick = "launchFirstScreen"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="156dp"
-        android:onClick = "launchFirstScreen" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
