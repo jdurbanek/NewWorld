@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -23,8 +24,13 @@ public class TypeFragment extends Fragment {
     private static final String ARG_ACTIVITY_TYPE = "myType";
 
 
-
+    // 0 - idle
+    // 1 - running.
+    // 2 - walking
+    // 3 - biking.
     private int myActivityType;
+
+    TextView myText;
 
 
     private OnFragmentInteractionListener mListener;
@@ -63,7 +69,21 @@ public class TypeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_type, container, false);
-
+        myText = (TextView)view.findViewById(R.id.actType);
+        if(myActivityType == 0) {
+            myText.setText("Idle");
+        }
+        else if(myActivityType == 1) {
+            myText.setText("Running");
+        }
+        else if(myActivityType == 2){
+            myText.setText("Walking");
+        }
+        else if(myActivityType == 3)
+            myText.setText("Biking");
+        else {
+            myText.setText("Unknown activity");
+        }
 
         return view;
     }

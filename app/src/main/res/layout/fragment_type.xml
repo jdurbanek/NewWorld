@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:text="TEST"
         android:textSize="42dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:id="@+id/actType" />
 
 </FrameLayout>
