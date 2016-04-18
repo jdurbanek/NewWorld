@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import java.lang.reflect.Type;
+
 public class GoOut extends AppCompatActivity {
 
     @Override
@@ -17,10 +19,10 @@ public class GoOut extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go_out);
 
-        MapFragment frg = new MapFragment();
+        TypeFragment frg = new TypeFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.map_frag_container, frg, "Map");
+        transaction.add(R.id.map_frag_container, frg, "Type");
         transaction.commit();
 
     }
