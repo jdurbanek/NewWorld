@@ -50,6 +50,15 @@ public class GoOut extends AppCompatActivity {
         if(requestCode == 1) {
             if(resultCode == RESULT_OK){
                 myType = data.getIntExtra("Type", 0);
+                if(myType == 0) {
+                    myText.setText("Idle");
+                }else if(myType == 1) {
+                    myText.setText("Running");
+                }else if(myType == 2) {
+                    myText.setText("Walking");
+                }else if(myType == 3){
+                    myText.setText("Biking");
+                }
             }
         }
 
