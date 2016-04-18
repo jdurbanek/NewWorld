@@ -41,7 +41,7 @@ public class GoOut extends AppCompatActivity {
 
     public void selectActivity(View view) {
         Intent intent = new Intent(this, MyType.class);
-        startActivityForResult(intent, 0);
+        startActivityForResult(intent, 1);
     }
 
     @Override
