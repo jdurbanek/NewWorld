@@ -12,65 +12,81 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1">
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="269dp"
+            android:id="@+id/map_frag_container"></FrameLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="249dp"
             android:weightSum="1"
-            android:layout_marginTop="250dp">
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/map_frag_container">
 
-            <Button
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:weightSum="1"
+                android:gravity="top"
+                android:layout_gravity="top">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start/Stop"
+                    android:id="@+id/startStop"
+                    android:layout_gravity="top"
+                    android:onClick = "selectActivity"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Large Text"
+                    android:id="@+id/textView" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="This Week"
+                    android:id="@+id/week"
+                    android:layout_weight="0.50"
+                    android:onClick="launchCurrentWeek"/>
+            </LinearLayout>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Start/Stop"
-                android:id="@+id/startStop" />
+                android:id="@+id/progressBar2" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Large Text"
-                android:id="@+id/textView" />
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar3" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="This Week"
-                android:id="@+id/week"
-                android:layout_weight="0.50"
-                android:onClick="launchCurrentWeek"/>
+                android:text="Home"
+                android:id="@+id/hButton"
+                android:layout_gravity="center_horizontal" />
+
         </LinearLayout>
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar2" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/textView2"
-            android:layout_gravity="center_horizontal" />
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar3" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home"
-            android:id="@+id/hButton"
-            android:layout_gravity="center_horizontal" />
-
     </LinearLayout>
 
 </RelativeLayout>

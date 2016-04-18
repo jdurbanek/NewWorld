@@ -19,7 +19,8 @@
         <activity android:name=".Base" />
         <activity android:name=".Battle" />
         <activity android:name=".GoOut" />
-        <activity android:name=".MyWeek"></activity>
+        <activity android:name=".MyWeek" />
+        <activity android:name=".MyType"></activity>
     </application>
 
 </manifest>
