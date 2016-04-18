@@ -20,15 +20,12 @@ public class Week {
     public ArrayList<Day> getDays(){
         return days;
     }
-
     public Date getDate(){
         return startDate;
     }
-
     public int getTotalSteps(){
         return totalSteps;
     }
-
     public double getTotalDistance(){
         return totalDistance;
     }
@@ -36,10 +33,18 @@ public class Week {
         return totalTime;
     }
     public void addDay(Day day){
-        days.add(day);
-        totalTime += day.getTime();
-        totalSteps += day.getSteps();
-        totalDistance += day.getDistance();
+        if(days.size()>=6)
+        {
+            //error should never happen controlled when adding days to the week
+            System.out.println("error this should never happen!");
+        }
+        else
+        {
+            days.add(day);
+            totalTime += day.getTime();
+            totalSteps += day.getSteps();
+            totalDistance += day.getDistance();
+        }
     }
 
 
