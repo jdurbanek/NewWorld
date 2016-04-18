@@ -9,24 +9,29 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import java.lang.reflect.Type;
 
 public class GoOut extends AppCompatActivity {
 
     int myType = 0;
+    TextView myText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go_out);
 
-       // TypeFragment frg = new TypeFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        //start the instance with 0 to indicate an idle activity.
-        transaction.add(R.id.map_frag_container, TypeFragment.newInstance(myType), "Type");
-        transaction.commit();
-
+        myText = (TextView) findViewById(R.id.activityStatus);
+        if(myType == 0) {
+            myText.setText("Idle");
+        }else if(myType == 1) {
+            myText.setText("Running");
+        }else if(myType == 2) {
+            myText.setText("Walking");
+        }else if(myType == 3){
+            myText.setText("Biking");
+        }
     }
 
     public void launchCurrentWeek(View view){
