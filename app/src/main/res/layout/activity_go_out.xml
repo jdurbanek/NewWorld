@@ -9,68 +9,92 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="project.mobile.newworld.GoOut">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:weightSum="1"
-            android:layout_marginTop="250dp">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Start/Stop"
-                android:id="@+id/startStop" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/textView" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This Week"
-                android:id="@+id/week"
-                android:layout_weight="0.50"
-                android:onClick="launchCurrentWeek"/>
-        </LinearLayout>
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar2" />
+        android:id="@+id/linearLayout"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
-            android:id="@+id/textView2"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/activityStatus"
+            android:layout_above="@+id/mainLinear"
+            android:layout_alignParentStart="true" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar3" />
+            android:layout_height="221dp"
+            android:weightSum="1"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/mainLinear">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home"
-            android:id="@+id/hButton"
-            android:layout_gravity="center_horizontal" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:weightSum="1"
+                android:gravity="top"
+                android:layout_gravity="top">
 
-    </LinearLayout>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start/Stop"
+                    android:id="@+id/startStop"
+                    android:layout_gravity="top"
+                    android:onClick = "selectActivity"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Large Text"
+                    android:id="@+id/textView" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="This Week"
+                    android:id="@+id/week"
+                    android:layout_weight="0.50"
+                    android:onClick="launchCurrentWeek"/>
+            </LinearLayout>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/textView2"
+                android:layout_gravity="center_horizontal" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar3" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:id="@+id/hButton"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
