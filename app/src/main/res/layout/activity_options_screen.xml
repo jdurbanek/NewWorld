@@ -12,13 +12,14 @@
     <ImageView
         android:layout_width = "match_parent"
         android:layout_height = "match_parent"
-        android:background="@drawable/oBack"
+        android:background="@drawable/oback"
         android:scaleType="centerCrop"
         />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
 
         <ImageButton
             style="?android:attr/buttonStyleSmall"
