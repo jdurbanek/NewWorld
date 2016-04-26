@@ -30,4 +30,9 @@ public class OptionsScreen extends AppCompatActivity {
         Intent intent = new Intent(this, Battle.class);
         startActivity(intent);
     }
+
+    public void settings(View view){
+        Intent intent = new Intent(this, MySettings.class);
+        startActivity(intent);
+    }
 }
