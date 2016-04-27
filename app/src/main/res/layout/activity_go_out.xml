@@ -49,22 +49,25 @@
                     android:text="Start/Stop"
                     android:id="@+id/startStop"
                     android:layout_gravity="top"
-                    android:onClick = "selectActivity"/>
+                    android:onClick = "start"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Large Text"
-                    android:id="@+id/textView" />
+                    android:id="@+id/time"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:text="        " />
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="This Week"
-                    android:id="@+id/week"
-                    android:layout_weight="0.50"
-                    android:onClick="launchCurrentWeek"/>
+                    android:text="Restart"
+                    android:id="@+id/restart"
+                    android:layout_marginLeft="30dp"
+                    android:onClick="restart"/>
+
             </LinearLayout>
 
             <ProgressBar
@@ -77,9 +80,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
+                android:text="Steps"
                 android:id="@+id/textView2"
                 android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/steps"
+                android:layout_gravity="center_horizontal" />
+
 
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"
@@ -87,14 +98,39 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/progressBar3" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home"
-                android:id="@+id/hButton"
-                android:layout_gravity="center_horizontal" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:id="@+id/hButton"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.07" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="This Week"
+                    android:id="@+id/week"
+                    android:layout_weight="0.50"
+                    android:onClick="launchCurrentWeek"
+                    android:layout_marginLeft="150dp" />
+            </LinearLayout>
 
         </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Activity"
+            android:id="@+id/selectActivity"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="selectActivity"/>
     </RelativeLayout>
 
 </RelativeLayout>

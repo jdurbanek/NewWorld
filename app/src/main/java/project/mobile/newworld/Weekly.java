@@ -67,6 +67,8 @@ public class Weekly extends Fragment {
         return inflater.inflate(R.layout.fragment_weekly, container, false);
     }
 
+
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
