@@ -78,6 +78,6 @@ public class Resource {
     public int getMaterials() {return this.materials;}
 
     public void collectMaterials(){
-        this.materials += 100;
+        materials += 100;
     }
 }

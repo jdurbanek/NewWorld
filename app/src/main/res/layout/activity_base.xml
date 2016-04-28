@@ -14,51 +14,128 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <ImageView
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainBuilding"
+            android:layout_weight="0.29"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/imageView3" />
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/category"
-            android:layout_gravity="center_vertical"
-            android:text="category_specific" />
+            android:id="@+id/barracks"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/imageView2"
+            android:layout_alignBottom="@+id/upgradeButton"
+            android:layout_alignStart="@+id/colMaterial" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="77dp"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upgrade"
-            android:id="@+id/upgradeButton"
-            android:onClick="upgradeBase"/>
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="76dp"
-            android:layout_height="35dp"
-            android:text="Home"
-            android:id="@+id/homeButton"
-            android:onClick="launchHomeScreen"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Collect Materials"
-            android:id="@+id/colMaterial"
+            android:id="@+id/farm"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/imageView2"
+            android:layout_alignBottom="@+id/upgradeButton"
+            android:layout_alignStart="@+id/colMaterial"
             android:layout_gravity="center_horizontal"
-            android:onClick="collectMaterials" />
+            android:layout_weight="0.17" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
-            android:id="@+id/button2"
+            android:id="@+id/wall"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/imageView2"
+            android:layout_alignBottom="@+id/upgradeButton"
+            android:layout_alignStart="@+id/colMaterial"
             android:layout_gravity="center_horizontal"
-            android:onClick="testResources"/>
+            android:layout_weight="0.29" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upgrade"
+                android:id="@+id/upgradeMB"
+                android:onClick="upgradeMainBuilding"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="121dp"
+                android:layout_alignParentStart="true"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upgrade"
+                android:id="@+id/upgradeB"
+                android:onClick="upgradeBarracks"
+                android:layout_marginLeft="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignTop="@+id/upgradeMB"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="52dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upgrade"
+                android:id="@+id/upgradeF"
+                android:onClick="upgradeFarm"
+                android:layout_marginLeft="0dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="151dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upgrade"
+                android:id="@+id/upgradeW"
+                android:onClick="upgradeWall"
+                android:layout_marginLeft="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignTop="@+id/upgradeF"
+                android:layout_alignStart="@+id/upgradeB" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="76dp"
+                android:layout_height="35dp"
+                android:text="Home"
+                android:id="@+id/homeButton"
+                android:onClick="launchHomeScreen"
+                android:layout_marginLeft="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Collect Materials"
+                android:id="@+id/colMaterial"
+                android:layout_gravity="center_horizontal"
+                android:onClick="collectMaterials"
+                android:layout_marginLeft="189dp"
+                android:layout_below="@+id/homeButton"
+                android:layout_alignParentStart="true" />
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button2"
+                android:text="test"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/upgradeB"
+                android:onClick="testResources"/>
+        </RelativeLayout>
 
     </LinearLayout>
 </RelativeLayout>

@@ -18,10 +18,27 @@ public class Base extends AppCompatActivity {
         startActivity(intent);
     }
     Resource myResources = new Resource();
+    upgradeables myUpgrades = new upgradeables();
+
 
     public void collectMaterials(View view) {
         myResources.collectMaterials();
     }
+
+    public void upgradeMainBuilding(){
+        myUpgrades.upgradeMainBuilding();
+    }
+    public void upgradeBarracks(){
+        myUpgrades.upgradeBarracks();
+    }
+    public void upgradeFarm()
+    {
+        myUpgrades.upgradeFarm();
+    }
+    public void upgradeWall(){
+        myUpgrades.upgradeWall();
+    }
+
     public void upgradeBase(View view){
         if(myResources.getMaterials()>200){
             Toast toast = Toast.makeText(getApplicationContext(), "My Base level:3 ", Toast.LENGTH_LONG);

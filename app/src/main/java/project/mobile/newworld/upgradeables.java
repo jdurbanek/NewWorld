@@ -16,6 +16,34 @@ public class upgradeables {
         this.farm = 1;
     }
 
+    public int getMainBuilding(){
+        return this.mainBuilding;
+    }
+
+    public int getBarracks(){
+        return this.barracks;
+    }
+
+    public int getWall(){
+        return this.wall;
+    }
+
+    public int getFarm(){
+        return this.farm;
+    }
+
+    public void upgradeMainBuilding(){
+        mainBuilding++;
+    }
+    public void upgradeBarracks(){
+        barracks++;
+    }
+    public void upgradeWall(){
+        wall++;
+    }
+    public void upgradeFarm(){
+        farm++;
+    }
 
 
 }
