@@ -31,7 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upgrade"
-            android:id="@+id/upgradeButton" />
+            android:id="@+id/upgradeButton"
+            android:onClick="upgradeBase"/>
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -40,6 +41,24 @@
             android:text="Home"
             android:id="@+id/homeButton"
             android:onClick="launchHomeScreen"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Collect Materials"
+            android:id="@+id/colMaterial"
+            android:layout_gravity="center_horizontal"
+            android:onClick="collectMaterials" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"
+            android:id="@+id/button2"
+            android:layout_gravity="center_horizontal"
+            android:onClick="testResources"/>
+
 
     </LinearLayout>
 </RelativeLayout>
