@@ -10,14 +10,18 @@ public class Resource {
     private int walls;
     private int weapons;
     private int settlers;
-    private int materials;
+    private int wood;
+    private int stone;
+    private int metal;
 
 
 
     public Resource(){
         this.water = 0;
         this.food = 0;
-        this.materials = 0;
+        this.wood = 0;
+        this.stone = 0;
+        this.metal = 0;
         this.health = 1000;
         this.walls = 1;
         this.weapons = 0;
@@ -75,9 +79,17 @@ public class Resource {
         this.food += food;
     }
 
-    public int getMaterials() {return this.materials;}
+    public int getStone() {return this.stone;}
+    public int getWood() {return this.wood;}
+    public int getMetal() {return this.metal;}
 
-    public void collectMaterials(){
-        materials += 100;
+    public void collectMetal(){
+        metal += 100;
+    }
+    public void collectStone(){
+        stone += 100;
+    }
+    public void collectWood(){
+        wood += 100;
     }
 }

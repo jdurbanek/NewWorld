@@ -19,27 +19,18 @@
             android:layout_height="wrap_content"
             android:id="@+id/mainBuilding"
             android:layout_weight="0.29"
-            android:layout_marginLeft="0dp"
-            android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/imageView3" />
+            android:layout_marginLeft="0dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/barracks"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/imageView2"
-            android:layout_alignBottom="@+id/upgradeButton"
-            android:layout_alignStart="@+id/colMaterial" />
+           />
 
         <ImageView
             android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:id="@+id/farm"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/imageView2"
-            android:layout_alignBottom="@+id/upgradeButton"
-            android:layout_alignStart="@+id/colMaterial"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.17" />
 
@@ -47,10 +38,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/wall"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/imageView2"
-            android:layout_alignBottom="@+id/upgradeButton"
-            android:layout_alignStart="@+id/colMaterial"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.29" />
 
@@ -63,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="Upgrade"
                 android:id="@+id/upgradeMB"
-                android:onClick="upgradeMainBuilding"
+                android:onClick="levelMainBuilding"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="121dp"
                 android:layout_alignParentStart="true"
@@ -74,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="Upgrade"
                 android:id="@+id/upgradeB"
-                android:onClick="upgradeBarracks"
+                android:onClick="levelBarracks"
                 android:layout_marginLeft="0dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_alignTop="@+id/upgradeMB"
@@ -86,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="Upgrade"
                 android:id="@+id/upgradeF"
-                android:onClick="upgradeFarm"
+                android:onClick="levelFarm"
                 android:layout_marginLeft="0dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
@@ -97,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:text="Upgrade"
                 android:id="@+id/upgradeW"
-                android:onClick="upgradeWall"
+                android:onClick="levelWall"
                 android:layout_marginLeft="0dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_alignTop="@+id/upgradeF"
@@ -120,7 +107,7 @@
                 android:text="Collect Materials"
                 android:id="@+id/colMaterial"
                 android:layout_gravity="center_horizontal"
-                android:onClick="collectMaterials"
+                android:onClick="collectWood"
                 android:layout_marginLeft="189dp"
                 android:layout_below="@+id/homeButton"
                 android:layout_alignParentStart="true" />

@@ -20,27 +20,36 @@ public class Base extends AppCompatActivity {
     Resource myResources = new Resource();
     Buildings myBuildings = new Buildings();
 
-
-    public void collectMaterials(View view) {
-        myResources.collectMaterials();
+    //collect resources
+    public void collectWood(View view) {
+        myResources.collectWood();
+    }
+    public void collectMetal(View view) {
+        myResources.collectMetal();
+    }
+    public void collectStone(View view) {
+        myResources.collectStone();
     }
 
-    public void upgradeMainBuilding(){
+    //level buildings
+    public void levelMainBuilding(View view){
         myBuildings.upgradeMainBuilding();
     }
-    public void upgradeBarracks(){
+    public void levelBarracks(View view){
         myBuildings.upgradeBarracks();
     }
-    public void upgradeFarm()
+    public void levelFarm(View view)
     {
         myBuildings.upgradeFarm();
     }
-    public void upgradeWall(){
+    public void levelWall(View view){
         myBuildings.upgradeWall();
     }
 
+
+    //extras for testing
     public void upgradeBase(View view){
-        if(myResources.getMaterials()>200){
+        if(myResources.getWood()>200){
             Toast toast = Toast.makeText(getApplicationContext(), "My Base level:3 ", Toast.LENGTH_LONG);
             toast.show();
         }
@@ -54,7 +63,7 @@ public class Base extends AppCompatActivity {
 
     public void testResources(View view)
     {
-        Toast toast = Toast.makeText(getApplicationContext(), "i have  "+myResources.getMaterials()+ "materials", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(getApplicationContext(), "i have  "+myResources.getWood()+ "materials", Toast.LENGTH_LONG);
         toast.show();
     }
 }
