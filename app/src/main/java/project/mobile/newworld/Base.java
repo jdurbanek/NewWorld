@@ -77,6 +77,7 @@ public class Base extends AppCompatActivity {
 
 
 
+
     }
     public void levelBarracks(View view){
         myBuildings.upgradeBarracks();
