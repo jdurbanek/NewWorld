@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.widget.Toast;
 
 /**
  * Created by Josh on 4/27/2016.
@@ -27,6 +28,12 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
                     && state == SupplicantState.COMPLETED) {
 
                 boolean connected = checkConnectedToDesiredWifi();
+                Toast toast = Toast.makeText(context, "Connected: " + connected, Toast.LENGTH_LONG);
+                toast.show();
+            }else {
+                boolean connected = false;
+                Toast toast = Toast.makeText(context, "Connected: " + connected, Toast.LENGTH_LONG);
+                toast.show();
             }
         }
     }
@@ -35,15 +42,19 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
     private boolean checkConnectedToDesiredWifi() {
         boolean connected = false;
         //set to the desired wifi mac address.
-        String desiredMacAddress = "router mac address";
+        String desiredMacAddress = "00:24:6c:ce:9c:81";
 
         WifiManager wifiManager =
                 (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 
         WifiInfo wifi = wifiManager.getConnectionInfo();
+     //   Toast toast = Toast.makeText(context, "Connected: " + wifi, Toast.LENGTH_LONG);
+       // toast.show();
         if (wifi != null) {
             // get current router Mac address
             String bssid = wifi.getBSSID();
+           // Toast toast = Toast.makeText(context, "Connected: " + bssid, Toast.LENGTH_LONG);
+           // toast.show();
             connected = desiredMacAddress.equals(bssid);
         }
 

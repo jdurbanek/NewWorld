@@ -23,13 +23,15 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences settings = getSharedPreferences("BaseInfo", 0);
         int baseLevel = settings.getInt("Base Level", 1);
-        Toast toast = Toast.makeText(getApplicationContext(), "My Base level: " + baseLevel, Toast.LENGTH_LONG);
-        toast.show();
+     //   Toast toast = Toast.makeText(getApplicationContext(), "My Base level: " + baseLevel, Toast.LENGTH_LONG);
+      //  toast.show();
 
         BroadcastReceiver br = new WifiBroadcastReceiver(getApplicationContext());
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         getApplicationContext().registerReceiver(br, intentFilter);
+
+
 
 
 
