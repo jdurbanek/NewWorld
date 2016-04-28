@@ -18,7 +18,7 @@ public class Base extends AppCompatActivity {
         startActivity(intent);
     }
     Resource myResources = new Resource();
-    upgradeables myUpgrades = new upgradeables();
+    Buildings myBuildings = new Buildings();
 
 
     public void collectMaterials(View view) {
@@ -26,17 +26,17 @@ public class Base extends AppCompatActivity {
     }
 
     public void upgradeMainBuilding(){
-        myUpgrades.upgradeMainBuilding();
+        myBuildings.upgradeMainBuilding();
     }
     public void upgradeBarracks(){
-        myUpgrades.upgradeBarracks();
+        myBuildings.upgradeBarracks();
     }
     public void upgradeFarm()
     {
-        myUpgrades.upgradeFarm();
+        myBuildings.upgradeFarm();
     }
     public void upgradeWall(){
-        myUpgrades.upgradeWall();
+        myBuildings.upgradeWall();
     }
 
     public void upgradeBase(View view){
