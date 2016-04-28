@@ -92,4 +92,14 @@ public class Resource {
     public void collectWood(){
         wood += 100;
     }
+    public void spendMetal(int ammount){
+
+
+    }
+    public void spendStone(int ammount){
+
+    }
+    public void spendWood(int ammount){
+
+    }
 }
