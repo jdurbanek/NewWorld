@@ -43,7 +43,7 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
     /** Detect you are connected to a specific network. */
     private boolean checkConnectedToDesiredWifi() {
         boolean connected = false;
-        //set to the desired wifi mac address.
+        //set to the desired wifi mac acddress.
         String desiredMacAddress = myMAC;
 
         WifiManager wifiManager =

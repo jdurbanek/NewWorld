@@ -89,6 +89,7 @@ public class MySettings extends AppCompatActivity {
         final String checkHome = wifi.getSSID();
         if(!checkHome.equals(setHome)){
             myMAC = wifi.getBSSID();
+
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
             dlgAlert.setMessage("Are you sure you want to update your home to " + checkHome + "?");
             dlgAlert.setTitle("Update Home");
@@ -117,8 +118,6 @@ public class MySettings extends AppCompatActivity {
         }catch (NumberFormatException e){
 
         }
-        Toast toast = Toast.makeText(getApplicationContext(), "" + myGoal, Toast.LENGTH_LONG);
-        toast.show();
         SharedPreferences settings = getSharedPreferences("BaseInfo", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("Goal", myGoal);
