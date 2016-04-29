@@ -90,15 +90,26 @@ public class CurrentWeek extends Fragment {
         SharedPreferences settings = this.getActivity().getSharedPreferences(PREF_NAME, 0);
         numWeeks = settings.getInt("numWeeks", 0);
         System.out.print(numWeeks);
-        dispWeek = settings.getString(("" + numWeeks), "This no is work " +numWeeks);
+        dispWeek = settings.getString(("" + numWeeks), "This no is work " + numWeeks);
 
         //Week week = unparse(dispWeek);
 
-        Toast toast = Toast.makeText(this.getActivity().getApplicationContext(),dispWeek, Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this.getActivity().getApplicationContext(), dispWeek, Toast.LENGTH_LONG);
         toast.show();
 
+        String[] arr = dispWeek.split(" ");
+        //for(int x = 0; x < arr.length; x++){
+        //
+        //}
         ArrayList<String> weekList = new ArrayList<>();
+        for(int i = 0; i < arr.length; i++){
+            weekList.add(arr[i]);
+        }
 
+
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(this.getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, weekList);
+        listView.setAdapter(adapter);
 
         //ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
         //listView.setAdapter();

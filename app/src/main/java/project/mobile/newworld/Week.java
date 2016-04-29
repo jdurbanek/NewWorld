@@ -38,7 +38,7 @@ public class Week {
     }
     //should check dates to make sure they are within the week
     public void addDay(Day day){
-        if(days.size()>=6)
+        if(days.size() >= 7)
         {
             //error should never happen controlled when adding days to the week
             System.out.println("error this should never happen!");
@@ -58,11 +58,9 @@ public class Week {
     //this will be used to parse
     public String toString(){
         String retString = ""; //+ startDate;
-
         for(int i = 0; i <days.size(); i++){
             retString = retString + days.get(i).getDate() + "," + days.get(i).getSteps() + "," + days.get(i).getTime() + "," + days.get(i).getDistance() + " ";
         }
-
         return retString;
     }
 

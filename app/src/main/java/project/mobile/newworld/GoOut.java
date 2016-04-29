@@ -90,7 +90,11 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         //fake week persistence
         ArrayList<Week> weekList = new ArrayList<>();
-        numWeeks = 0;
+        numWeeks = 0;// take out for final version when num weeks actually changes TODO
+
+
+
+        //dummy data date change will be detected and weeks will be created automatically TODO
         for(int x = 0; x < 10 ; x++){
             String date;
             Date newDate = new Date();
