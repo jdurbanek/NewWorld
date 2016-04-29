@@ -43,6 +43,11 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
     Handler handler = new Handler();
 
 
+
+    public void launchHomeScreen(View view) {
+        Intent intent = new Intent(this, OptionsScreen.class);
+        startActivity(intent);
+    }
     TextView steps;
 
     int myType = 0;

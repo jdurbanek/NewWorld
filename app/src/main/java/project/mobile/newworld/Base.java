@@ -22,6 +22,7 @@ public class Base extends AppCompatActivity {
         int currWood = savedResourses.getInt("Wood", 0);
         int currStone = savedResourses.getInt("Stone", 0);
         int currMetal = savedResourses.getInt("Metal",0);
+
         myResources.setWood(currWood);
         myResources.setStone(currStone);
         myResources.setMetal(currMetal);
@@ -29,6 +30,10 @@ public class Base extends AppCompatActivity {
     }
     public void launchHomeScreen(View view) {
         Intent intent = new Intent(this, OptionsScreen.class);
+        startActivity(intent);
+    }
+    public void goToMainBuilding(View view) {
+        Intent intent = new Intent(this, MainBuilding.class);
         startActivity(intent);
     }
 

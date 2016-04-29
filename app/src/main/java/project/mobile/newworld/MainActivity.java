@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     public void launchFirstScreen(View view) {
         Intent intent = new Intent(this, OptionsScreen.class);
         startActivity(intent);

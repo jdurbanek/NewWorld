@@ -10,6 +10,8 @@ public class Buildings {
     public int farm;
 
     public Buildings(){
+
+
         this.mainBuilding = 1;
         this.barracks = 1;
         this.wall = 1;
@@ -33,16 +35,16 @@ public class Buildings {
     }
 
     public void upgradeMainBuilding(){
-        mainBuilding++;
+        this.mainBuilding++;
     }
     public void upgradeBarracks(){
-        barracks++;
+        this.barracks++;
     }
     public void upgradeWall(){
-        wall++;
+        this.wall++;
     }
     public void upgradeFarm(){
-        farm++;
+        this.farm++;
     }
 
 
