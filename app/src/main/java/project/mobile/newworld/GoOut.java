@@ -25,10 +25,11 @@ import java.lang.reflect.Type;
 public class GoOut extends AppCompatActivity implements SensorEventListener {
     public static final String PREFS_NAME = "DayInfo";
 
+
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
     private Sensor mStepDetectorSensor;
-
+    private int currSteps = 0;
 
     Button butnstart, butnreset;
     TextView time;
@@ -59,7 +60,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
 
         SharedPreferences settings = getSharedPreferences("DayInfo", 0);
-        int currSteps = settings.getInt("currSteps", 1);
+        currSteps = settings.getInt("currSteps", 0);
         steps.setText("" + currSteps);
 
         mSensorManager = (SensorManager)
@@ -73,7 +74,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         if(myType == 0) {
             myText.setText("Idle");
         }else if(myType == 1) {
-            myText.setText("Running");
+            myText.setText("@string/Running");
         }else if(myType == 2) {
             myText.setText("Walking");
         }else if(myType == 3){
@@ -109,7 +110,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("currSteps", 1354);
+        editor.putInt("currSteps", currSteps);
         editor.commit();
 
         mSensorManager.registerListener(this, mStepCounterSensor,
@@ -127,7 +128,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         mSensorManager.unregisterListener(this, mStepDetectorSensor);
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("currSteps", 1354);
+        editor.putInt("currSteps", currSteps);
         editor.commit();
     }
 
@@ -171,7 +172,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             t = 0;
         } else {
             butnstart.setText("Start");
-            time.setTextColor(Color.BLUE);
+            //time.setTextColor(Color.BLUE);
             timeSwapBuff += timeInMilliseconds;
             handler.removeCallbacks(updateTimer);
             t = 1;
@@ -193,7 +194,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             milliseconds = (int) (updatedtime % 1000);
             time.setText("" + mins + ":" + String.format("%02d", secs) + ":"
                     + String.format("%03d", milliseconds));
-            time.setTextColor(Color.RED);
+            //time.setTextColor(Color.RED);
             handler.postDelayed(this, 0);
         }
 
