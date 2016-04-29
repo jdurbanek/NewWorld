@@ -21,15 +21,20 @@ import android.widget.*;
 import android.os.Handler;
 
 import java.lang.reflect.Type;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class GoOut extends AppCompatActivity implements SensorEventListener {
-    public static final String PREFS_NAME = "DayInfo";
+    public static final String PREF_NAME = "Resource";
 
 
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
     private Sensor mStepDetectorSensor;
     private int currSteps = 0;
+    private int numWeeks = 0;
 
     Button butnstart, butnreset;
     TextView time;
@@ -59,8 +64,9 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         time = (TextView)findViewById(R.id.time);
 
 
-        SharedPreferences settings = getSharedPreferences("DayInfo", 0);
+        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
         currSteps = settings.getInt("currSteps", 0);
+        //numWeeks = settings.getInt("numWeeks", 0); will use when functional
         steps.setText("" + currSteps);
 
         mSensorManager = (SensorManager)
@@ -80,6 +86,42 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         }else if(myType == 3){
             myText.setText("Biking");
         }
+
+
+        //fake week persistence
+        ArrayList<Week> weekList = new ArrayList<>();
+        numWeeks = 0;
+        for(int x = 0; x < 10 ; x++){
+            String date;
+            Date newDate = new Date();
+            Format formatter;
+            formatter = new SimpleDateFormat("dd/MM/yyyy");
+            date = formatter.format(newDate);
+            Week week = new Week(date);
+            for(int j = 0; j < 7; j++){
+                Day day = new Day(date);
+                day.setSteps((j+x)*215 +3000 );
+                day.setTime((j+x) * 10 + 5);
+                day.setDistance(day.getSteps() / 2000);
+                week.addDay(day);
+            }
+            weekList.add(week);
+            numWeeks++;
+        }
+
+
+        //SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("numWeeks",numWeeks);
+        for(int t = 0; t < weekList.size(); t++){
+            String str = "" + (t+1);
+            //Toast toast = Toast.makeText(getApplicationContext(), weekList.get(t).toString(), Toast.LENGTH_LONG);
+            //toast.show();
+            editor.putString(str, weekList.get(t).toString());
+            editor.commit();
+        }
+        //editor.commit();
+
     }
 
     @Override
@@ -108,9 +150,9 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         super.onResume();
 
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("currSteps", currSteps);
+        editor.putInt("currSteps", 2000); //currSteps TODO
         editor.commit();
 
         mSensorManager.registerListener(this, mStepCounterSensor,
@@ -126,9 +168,9 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         super.onStop();
         mSensorManager.unregisterListener(this, mStepCounterSensor);
         mSensorManager.unregisterListener(this, mStepDetectorSensor);
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("currSteps", currSteps);
+        editor.putInt("currSteps", 3000); // TODO currSteps
         editor.commit();
     }
 
@@ -143,6 +185,25 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
     }
 
     public void restart(View view){
+        //persist to file Resourse, Keys: Wood, Stone, Metal, BaseLevel
+
+        int wood;
+        int stone;
+        int metal;
+
+        wood = (int)(currSteps * .1);
+        stone = (int)(currSteps * .05);
+        metal = (int) (currSteps * .001);
+
+        //calcualte wood, stone, metal based on time and curr steps
+
+
+
+    //    SharedPreferences settings = getSharedPreferences(RESOURCE_NAME, 0);
+    //    SharedPreferences.Editor editor = settings.edit();
+    //    editor.putInt("currSteps", currSteps);
+    //    editor.commit();
+
         starttime = 0L;
         timeInMilliseconds = 0L;
         timeSwapBuff = 0L;
@@ -154,6 +215,15 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         butnstart.setText("Start");
         handler.removeCallbacks(updateTimer);
         time.setText("00:00:00");
+
+
+        //idk if this is working correctly
+        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        currSteps += settings.getInt("currSteps", 0);
+        editor.putInt("currSteps", currSteps);
+        editor.commit();
+        currSteps = 0;// have to persist
     }
 
 

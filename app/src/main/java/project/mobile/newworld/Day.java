@@ -1,6 +1,8 @@
 package project.mobile.newworld;
 import java.sql.Time;
 import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -12,10 +14,22 @@ public class Day {
     private double distance = 0;
     //time in minutes
     private double time;
-    private Date date;
+    private String date;
 
-    public Day(Date date){
-        this.date = date;
+    public Day(String newDate){
+
+        /*
+        Format formatter;
+        formatter = new SimpleDateFormat("dd/MM/yyyy");
+        formatter.format(newDate);
+        */
+        this.date = newDate;
+    }
+    public Day(String newDate,int steps, double distance, double time) {
+        this.date = newDate;
+        this.steps = steps;
+        this.distance = distance;
+        this.time = time;
     }
     public int getSteps(){
         return steps;
@@ -23,7 +37,7 @@ public class Day {
     public double getDistance(){
         return distance;
     }
-    public Date getDate(){
+    public String getDate(){
         return date;
     }
     public double getTime(){
@@ -35,7 +49,7 @@ public class Day {
     public void setDistance(double distance){
         this.distance = distance;
     }
-    public void setDate(Date date){
+    public void setDate(String date){
         this.date = date;
     }
     public void setTime(double time){
