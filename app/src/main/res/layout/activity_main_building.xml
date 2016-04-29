@@ -11,15 +11,6 @@
 
     tools:context="project.mobile.newworld.MainBuilding">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:id="@+id/Back"
-        android:onClick="goToBase"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-
     <ImageView
         android:layout_width="98dp"
         android:layout_height="wrap_content"
@@ -65,15 +56,15 @@
         android:layout_height="wrap_content"
         android:text="Stone"
         android:id="@+id/currStone"
-        android:layout_below="@+id/Back"
-        android:layout_toStartOf="@+id/mbLevel" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Metal"
         android:id="@+id/currMetal"
-        android:layout_below="@+id/Back"
-        android:layout_toStartOf="@+id/Back" />
+        android:layout_alignTop="@+id/currStone"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

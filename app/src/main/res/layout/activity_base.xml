@@ -16,7 +16,11 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2" />
+            android:id="@+id/MainBuilding"
+            android:background="@drawable/wbdud1"
+            android:layout_toStartOf="@+id/colMaterial"
+            android:onClick="goToMainBuilding"
+            android:layout_alignBottom="@+id/upgradeF" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -58,9 +62,8 @@
             android:id="@+id/upgradeF"
             android:onClick="levelFarm"
             android:layout_marginLeft="0dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="151dp" />
+            android:layout_below="@+id/button2"
+            android:layout_alignEnd="@+id/button3" />
 
 
 
@@ -94,7 +97,8 @@
             android:onClick="collectStone"
             android:layout_marginLeft="189dp"
             android:layout_below="@+id/button3"
-            android:layout_alignEnd="@+id/colMaterial" />
+            android:layout_alignEnd="@+id/colMaterial"
+            android:id="@+id/button5" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,19 +116,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/button2"
             android:text="test"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/upgradeB"
-            android:onClick="testResources"/>
-
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="GoMainBuilding"
-            android:id="@+id/button4"
-            android:layout_below="@+id/imageView2"
-            android:layout_toStartOf="@+id/colMaterial"
-            android:onClick="goToMainBuilding"/>
+            android:onClick="testResources"
+            android:layout_below="@+id/button5"
+            android:layout_alignEnd="@+id/button5"
+            android:layout_marginTop="56dp" />
 
     </RelativeLayout>
 
