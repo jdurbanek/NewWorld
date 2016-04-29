@@ -48,6 +48,7 @@ public class MySettings extends AppCompatActivity {
         String myName = settings.getString("Name", "User");
         int stepG = settings.getInt("Goal", 10000);
         setHome = settings.getString("Wifi", setHome);
+        myMAC = settings.getString("MAC", myMAC);
 
         male.setChecked(amMale);
         female.setChecked(amFemale);
@@ -87,6 +88,10 @@ public class MySettings extends AppCompatActivity {
                 (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifi = wifiManager.getConnectionInfo();
         final String checkHome = wifi.getSSID();
+       // myMAC = wifi.getBSSID();
+        if(myMAC.equals("")) {
+            myMAC = wifi.getBSSID();
+        }
         if(!checkHome.equals(setHome)){
             myMAC = wifi.getBSSID();
 
