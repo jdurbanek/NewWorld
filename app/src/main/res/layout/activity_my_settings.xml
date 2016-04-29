@@ -56,10 +56,26 @@
         android:layout_gravity="center_horizontal"
         android:checked="false" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Current Home: "
+        android:id="@+id/currentHome"
+        android:layout_gravity="center_horizontal" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="Update Home"
+        android:id="@+id/updateHome"
+        android:layout_gravity="center_horizontal"
+        android:onClick = "updateMyHome"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Settings"
         android:id="@+id/saveButton"
         android:layout_gravity="center_horizontal"
         android:onClick="saveSettings"/>
