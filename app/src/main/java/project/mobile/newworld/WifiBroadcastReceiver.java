@@ -14,9 +14,11 @@ import android.widget.Toast;
 public class WifiBroadcastReceiver extends BroadcastReceiver {
 
     private Context context;
+    private String myMAC;
 
-    public WifiBroadcastReceiver(Context c){
+    public WifiBroadcastReceiver(Context c, String mac){
         this.context = c;
+        this.myMAC = mac;
     }
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -42,7 +44,7 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
     private boolean checkConnectedToDesiredWifi() {
         boolean connected = false;
         //set to the desired wifi mac address.
-        String desiredMacAddress = "00:24:6c:ce:9c:81";
+        String desiredMacAddress = myMAC;
 
         WifiManager wifiManager =
                 (WifiManager) context.getSystemService(Context.WIFI_SERVICE);

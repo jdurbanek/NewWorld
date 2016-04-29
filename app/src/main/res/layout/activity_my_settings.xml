@@ -70,7 +70,7 @@
         android:text="Update Home"
         android:id="@+id/updateHome"
         android:layout_gravity="center_horizontal"
-        android:onClick = "updateMyHome"/>
+        android:onClick = "updateMyWifi"/>
 
     <Button
         android:layout_width="wrap_content"

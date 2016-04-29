@@ -1,6 +1,8 @@
 package project.mobile.newworld;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -26,7 +28,7 @@ public class MySettings extends AppCompatActivity {
     private Button updateWifi;
     private int myGoal = 10000;
     private String setHome = "Not set";
-
+    private String myMAC = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class MySettings extends AppCompatActivity {
         boolean amFemale = settings.getBoolean("Female", false);
         String myName = settings.getString("Name", "User");
         int stepG = settings.getInt("Goal", 10000);
-        String myWifi = settings.getString("Wifi", setHome);
+        setHome = settings.getString("Wifi", setHome);
 
         male.setChecked(amMale);
         female.setChecked(amFemale);
@@ -57,7 +59,7 @@ public class MySettings extends AppCompatActivity {
         name.setText(myName);
         goalLabel.setText("Step Goal: " + stepG);
         myGoal = stepG;
-        currentHome.setText("Current Home: " +  myWifi);
+        currentHome.setText("Current Home: " +  setHome);
     }
 
     public void saveSettings(View view){
@@ -84,7 +86,26 @@ public class MySettings extends AppCompatActivity {
         WifiManager wifiManager =
                 (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifi = wifiManager.getConnectionInfo();
-        setHome = wifi.getSSID();
+        final String checkHome = wifi.getSSID();
+        if(!checkHome.equals(setHome)){
+            myMAC = wifi.getBSSID();
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+            dlgAlert.setMessage("Are you sure you want to update your home to " + checkHome + "?");
+            dlgAlert.setTitle("Update Home");
+            dlgAlert.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            //dismiss the dialog
+                            setHome = checkHome;
+                            currentHome.setText("Current Home: " + setHome);
+                        }
+                    });
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+        }else{
+            Toast toast = Toast.makeText(getApplicationContext(), "You are already at Home!!", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     @Override
@@ -105,6 +126,7 @@ public class MySettings extends AppCompatActivity {
         editor.putBoolean("Male", male.isChecked());
         editor.putBoolean("Female", female.isChecked());
         editor.putString("Wifi", setHome);
+        editor.putString("MAC", myMAC);
         editor.commit();
     }
 }
