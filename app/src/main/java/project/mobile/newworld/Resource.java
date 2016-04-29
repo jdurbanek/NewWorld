@@ -23,7 +23,6 @@ public class Resource {
         this.stone = 0;
         this.metal = 0;
         this.health = 1000;
-        this.walls = 1;
         this.weapons = 0;
         this.settlers = 1;
     }
@@ -33,13 +32,6 @@ public class Resource {
         if yes, it upgrades and returns true
         else returns false.
      */
-    public boolean levelUpWalls(int water, int food){
-        if(water > 10 && food > 10){
-            this.walls++;
-            return true;
-        }
-        return false;
-    }
 
     /*
     the player can gain health depending on how much food and water they are willing to use.
