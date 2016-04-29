@@ -64,9 +64,8 @@
                 android:onClick="levelBarracks"
                 android:layout_marginLeft="0dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_alignTop="@+id/upgradeMB"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="52dp" />
+                android:layout_below="@+id/upgradeMB"
+                android:layout_alignEnd="@+id/button3" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -104,13 +103,32 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Collect Materials"
-                android:id="@+id/colMaterial"
+                android:text="Collect Wood"
                 android:layout_gravity="center_horizontal"
                 android:onClick="collectWood"
                 android:layout_marginLeft="189dp"
                 android:layout_below="@+id/homeButton"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:id="@+id/button3" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Collect Stone"
+                android:layout_gravity="center_horizontal"
+                android:onClick="collectStone"
+                android:layout_marginLeft="189dp"
+                android:layout_below="@+id/button3"
+                android:layout_alignEnd="@+id/colMaterial" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Collect Metal"
+                android:id="@+id/colMaterial"
+                android:layout_gravity="center_horizontal"
+                android:onClick="collectMetal"
+                android:layout_above="@+id/upgradeB"
+                android:layout_alignStart="@+id/button3" />
 
 
 

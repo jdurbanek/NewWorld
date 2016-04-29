@@ -83,23 +83,40 @@ public class Resource {
     public int getWood() {return this.wood;}
     public int getMetal() {return this.metal;}
 
-    public void collectMetal(){
-        metal += 100;
+    public void setWood(int ammount){
+        this.wood = ammount;
     }
-    public void collectStone(){
-        stone += 100;
+    public void setStone(int ammount){
+        this.stone = ammount;
     }
-    public void collectWood(){
-        wood += 100;
+    public void setMetal(int ammount){
+        this.metal = ammount;
     }
-    public void spendMetal(int ammount){
 
 
+    public int collectWood(){
+        return this.wood+=100;
     }
-    public void spendStone(int ammount){
-
+    public int collectStone(){
+        return this.stone += 100;
     }
-    public void spendWood(int ammount){
+    public int collectMetal(){
+        return this.metal += 100;
+    }
 
+
+
+
+
+
+    //spending resources
+    public int spendMetal(int ammount){
+        return this.metal-ammount;
+    }
+    public int spendStone(int ammount){
+        return this.stone-ammount;
+    }
+    public int spendWood(int ammount){
+        return this.wood-ammount;
     }
 }
