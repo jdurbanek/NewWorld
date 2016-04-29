@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +20,8 @@ import org.w3c.dom.Text;
 
 public class MySettings extends AppCompatActivity {
 
-    private CheckBox male;
-    private CheckBox female;
+    private RadioButton male;
+    private RadioButton female;
     private EditText name;
     private EditText sGoals;
     private TextView goalLabel;
@@ -34,8 +35,8 @@ public class MySettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_settings);
 
-        male = (CheckBox)findViewById(R.id.gM);
-        female = (CheckBox)findViewById(R.id.gF);
+        male = (RadioButton)findViewById(R.id.gM);
+        female = (RadioButton)findViewById(R.id.gF);
         name = (EditText)findViewById(R.id.nameEText);
         sGoals = (EditText)findViewById(R.id.stepGoals);
         goalLabel = (TextView)findViewById(R.id.goalsLabel);

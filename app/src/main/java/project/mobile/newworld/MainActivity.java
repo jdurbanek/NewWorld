@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,10 +16,13 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String PREFS_NAME = "BaseInfo";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         SharedPreferences settings = getSharedPreferences("BaseInfo", 0);
