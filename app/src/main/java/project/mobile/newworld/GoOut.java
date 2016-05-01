@@ -71,7 +71,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
         currSteps = settings.getInt("currSteps", 0);
-        //numWeeks = settings.getInt("numWeeks", 0); will use when functional
+        //numWeeks = settings.getInt("numWeeks", 0); will use when functional TODO
         steps.setText("" + currSteps);
 
         mSensorManager = (SensorManager)
@@ -124,8 +124,6 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         editor.putInt("numWeeks",numWeeks);
         for(int t = 0; t < weekList.size(); t++){
             String str = "" + (t+1);
-            //Toast toast = Toast.makeText(getApplicationContext(), weekList.get(t).toString(), Toast.LENGTH_LONG);
-            //toast.show();
             editor.putString(str, weekList.get(t).toString());
             editor.commit();
         }
@@ -159,10 +157,10 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         super.onResume();
 
-        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("currSteps", 2000); //currSteps TODO
-        editor.commit();
+        //SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+        //SharedPreferences.Editor editor = settings.edit();
+        //editor.putInt("currSteps", 2000); //currSteps TODO
+        //editor.commit();
 
         mSensorManager.registerListener(this, mStepCounterSensor,
 
@@ -177,10 +175,10 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         super.onStop();
         mSensorManager.unregisterListener(this, mStepCounterSensor);
         mSensorManager.unregisterListener(this, mStepDetectorSensor);
-        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("currSteps", 3000); // TODO currSteps
-        editor.commit();
+        //SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+        //SharedPreferences.Editor editor = settings.edit();
+        //editor.putInt("currSteps", 3000); // TODO currSteps
+        //editor.commit();
     }
 
 
@@ -204,14 +202,29 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         stone = (int)(currSteps * .05);
         metal = (int) (currSteps * .001);
 
+        //preferences "Wood" "Metal" "Stone"
+
         //calcualte wood, stone, metal based on time and curr steps
+        String resToast;
+        resToast = "You earned: " + wood + " wood, " + stone + " stone, and " + metal + " metal durning your activity!";
+
+        Toast toast = Toast.makeText(getApplicationContext(), resToast , Toast.LENGTH_LONG);
+        toast.show();
 
 
+        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
 
-    //    SharedPreferences settings = getSharedPreferences(RESOURCE_NAME, 0);
-    //    SharedPreferences.Editor editor = settings.edit();
-    //    editor.putInt("currSteps", currSteps);
-    //    editor.commit();
+        //add new resources to total resources
+        wood += settings.getInt("Wood", 0);
+        metal += settings.getInt("Metal", 0);
+        stone += settings.getInt("Stone", 0);
+
+        //save resources
+        editor.putInt("Wood", wood);
+        editor.putInt("Metal", metal);
+        editor.putInt("Stone", stone);
+        editor.commit();
 
         starttime = 0L;
         timeInMilliseconds = 0L;
@@ -227,8 +240,10 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
 
         //idk if this is working correctly
-        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
+        //SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+        //SharedPreferences.Editor editor = settings.edit();
+
+        //add current activity's steps to total days steps
         currSteps += settings.getInt("currSteps", 0);
         editor.putInt("currSteps", currSteps);
         editor.commit();

@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="project.mobile.newworld.GoOut">
+    tools:context="project.mobile.newworld.GoOut"
+    android:background="@color/wallet_holo_blue_light">
 
     <RelativeLayout
         android:orientation="vertical"
@@ -132,6 +133,14 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:onClick="selectActivity"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:background="@drawable/exploredud"
+            android:layout_above="@+id/activityStatus"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
 </RelativeLayout>
