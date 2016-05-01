@@ -67,4 +67,36 @@
         android:layout_alignTop="@+id/currStone"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Collect Wood"
+        android:layout_gravity="center_horizontal"
+        android:onClick="collectWood"
+        android:layout_marginLeft="189dp"
+        android:id="@+id/button3"
+        android:layout_below="@+id/currWood"
+        android:layout_toStartOf="@+id/upgradeMB" />"
+         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Collect Stone"
+        android:layout_gravity="center_horizontal"
+        android:onClick="collectStone"
+        android:layout_marginLeft="189dp"
+        android:id="@+id/button5"
+        android:layout_below="@+id/currStone"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Collect Metal"
+        android:id="@+id/colMaterial"
+        android:layout_gravity="center_horizontal"
+        android:onClick="collectMetal"
+        android:layout_below="@+id/currMetal"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

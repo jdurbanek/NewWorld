@@ -89,4 +89,23 @@ public class MainBuilding extends AppCompatActivity {
         }
 
     }
+
+    public void collectWood(View view) {
+        SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
+        SharedPreferences.Editor editor = resources.edit();
+        editor.putInt("Wood", myResources.collectWood());
+        editor.commit();
+    }
+    public void collectStone(View view) {
+        SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
+        SharedPreferences.Editor editor = resources.edit();
+        editor.putInt("Stone", myResources.collectStone());
+        editor.commit();
+    }
+    public void collectMetal(View view) {
+        SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
+        SharedPreferences.Editor editor = resources.edit();
+        editor.putInt("Metal", myResources.collectMetal());
+        editor.commit();
+    }
 }

@@ -25,6 +25,8 @@
         <activity android:name=".MyType" />
         <activity android:name=".MySettings" />
         <activity android:name=".MainBuilding" />
+        <activity android:name=".Barracks" />
+        <activity android:name=".Farm"></activity>
     </application>
 
 </manifest>

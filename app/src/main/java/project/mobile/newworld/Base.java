@@ -28,52 +28,26 @@ public class Base extends AppCompatActivity {
         myResources.setMetal(currMetal);
 
     }
-    public void launchHomeScreen(View view) {
-        Intent intent = new Intent(this, OptionsScreen.class);
-        startActivity(intent);
-    }
+
+
     public void goToMainBuilding(View view) {
         Intent intent = new Intent(this, MainBuilding.class);
         startActivity(intent);
     }
-
-
-
-    //collect resources
-    public void collectWood(View view) {
-        SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
-        SharedPreferences.Editor editor = resources.edit();
-        editor.putInt("Wood", myResources.collectWood());
-        editor.commit();
+    public void goToBarracks(View view) {
+        Intent intent = new Intent(this, Barracks.class);
+        startActivity(intent);
     }
-    public void collectStone(View view) {
-        SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
-        SharedPreferences.Editor editor = resources.edit();
-        editor.putInt("Stone", myResources.collectStone());
-        editor.commit();
-    }
-    public void collectMetal(View view) {
-        SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
-        SharedPreferences.Editor editor = resources.edit();
-        editor.putInt("Metal", myResources.collectMetal());
-        editor.commit();
+    public void goToFarm(View view) {
+        Intent intent = new Intent(this, Farm.class);
+        startActivity(intent);
     }
 
 
-    //level buildings
 
 
-
-
-    public void levelBarracks(View view){
-        myBuildings.upgradeBarracks();
-    }
-    public void levelFarm(View view)
-    {
+    public void levelFarm(View view) {
         myBuildings.upgradeFarm();
-    }
-    public void levelWall(View view){
-        myBuildings.upgradeWall();
     }
 
 
