@@ -12,31 +12,39 @@ import org.w3c.dom.Text;
 
 public class MainBuilding extends AppCompatActivity {
 
+
+    public static final String RESOURCE_NAME = "Resource";
     private TextView mbLevel;
     private TextView currWood;
     private TextView currStone;
     private TextView currMetal;
 
-    public static final String RESOURCE_NAME = "Resource";
     Resource myResources = new Resource();
     Buildings myBuildings = new Buildings();
-
+    SharedPreferences savedResourses = getSharedPreferences("Resource", 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_building);
 
+        super.onCreate(savedInstanceState);
 
         mbLevel = (TextView) findViewById(R.id.mbLevel);
         currWood = (TextView) findViewById(R.id.currWood);
         currStone = (TextView) findViewById(R.id.currStone);
         currMetal = (TextView) findViewById(R.id.currMetal);
 
-        SharedPreferences settings = getSharedPreferences("Resource", 0);
-        currWood.setText("Wood " + settings.getInt("Wood", 0));
-        currStone.setText("Stone " + settings.getInt("Stone", 0));
-        currMetal.setText("Metal " + settings.getInt("Metal", 0));
+
+        int cWood = savedResourses.getInt("Wood", 0);
+        int cStone = savedResourses.getInt("Stone", 0);
+        int cMetal = savedResourses.getInt("Metal",0);
+
+        myResources.setWood(cWood);
+        myResources.setStone(cStone);
+        myResources.setMetal(cMetal);
+        currWood.setText("Wood " + savedResourses.getInt("Wood", 0));
+        currStone.setText("Stone " + savedResourses.getInt("Stone", 0));
+        currMetal.setText("Metal " + savedResourses.getInt("Metal", 0));
 
         mbLevel.setText("Level " + getMainBuildingLevel());
 
@@ -44,8 +52,7 @@ public class MainBuilding extends AppCompatActivity {
 
 
     public int getMainBuildingLevel() {
-        SharedPreferences settings = getSharedPreferences("Resource", 0);
-        int currLevel = settings.getInt("MB", 1);
+        int currLevel = savedResourses.getInt("MB", 1);
         return currLevel;
     }
 
@@ -95,17 +102,20 @@ public class MainBuilding extends AppCompatActivity {
         SharedPreferences.Editor editor = resources.edit();
         editor.putInt("Wood", myResources.collectWood());
         editor.commit();
+        currWood.setText("Wood " + resources.getInt("Wood", 0));
     }
     public void collectStone(View view) {
         SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
         SharedPreferences.Editor editor = resources.edit();
         editor.putInt("Stone", myResources.collectStone());
         editor.commit();
+        currStone.setText("Stone " + resources.getInt("Stone", 0));
     }
     public void collectMetal(View view) {
         SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
         SharedPreferences.Editor editor = resources.edit();
         editor.putInt("Metal", myResources.collectMetal());
         editor.commit();
+        currMetal.setText("Metal " + resources.getInt("Metal", 0));
     }
 }
