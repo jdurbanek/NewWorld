@@ -204,14 +204,25 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         stone = (int)(currSteps * .05);
         metal = (int) (currSteps * .001);
 
+        //preferences "Wood" "Metal" "Stone"
+
         //calcualte wood, stone, metal based on time and curr steps
 
 
 
-    //    SharedPreferences settings = getSharedPreferences(RESOURCE_NAME, 0);
-    //    SharedPreferences.Editor editor = settings.edit();
-    //    editor.putInt("currSteps", currSteps);
-    //    editor.commit();
+        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+
+        //add new resources to total resources
+        wood += settings.getInt("Wood", 0);
+        metal += settings.getInt("Metal", 0);
+        stone += settings.getInt("Stone", 0);
+
+        //save resources
+        editor.putInt("Wood", wood);
+        editor.putInt("Metal", metal);
+        editor.putInt("Stone", stone);
+        editor.commit();
 
         starttime = 0L;
         timeInMilliseconds = 0L;
@@ -227,8 +238,10 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
 
         //idk if this is working correctly
-        SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
+        //SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+        //SharedPreferences.Editor editor = settings.edit();
+
+        //add current activity's steps to total days steps
         currSteps += settings.getInt("currSteps", 0);
         editor.putInt("currSteps", currSteps);
         editor.commit();
