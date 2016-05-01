@@ -21,7 +21,7 @@ public class MainBuilding extends AppCompatActivity {
 
     Resource myResources = new Resource();
     Buildings myBuildings = new Buildings();
-    SharedPreferences savedResourses = getSharedPreferences("Resource", 0);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MainBuilding extends AppCompatActivity {
         currStone = (TextView) findViewById(R.id.currStone);
         currMetal = (TextView) findViewById(R.id.currMetal);
 
-
+        SharedPreferences savedResourses = getSharedPreferences("Resource", 0);
         int cWood = savedResourses.getInt("Wood", 0);
         int cStone = savedResourses.getInt("Stone", 0);
         int cMetal = savedResourses.getInt("Metal",0);
@@ -52,6 +52,7 @@ public class MainBuilding extends AppCompatActivity {
 
 
     public int getMainBuildingLevel() {
+        SharedPreferences savedResourses = getSharedPreferences("Resource", 0);
         int currLevel = savedResourses.getInt("MB", 1);
         return currLevel;
     }
