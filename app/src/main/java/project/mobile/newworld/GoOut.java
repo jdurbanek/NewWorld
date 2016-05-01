@@ -248,6 +248,8 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         editor.putInt("currSteps", currSteps);
         editor.commit();
         currSteps = 0;// have to persist
+
+        steps.setText("0");
     }
 
 
