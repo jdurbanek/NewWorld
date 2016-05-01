@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:text="Home"
             android:id="@+id/hButton"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:onClick="launchHomeScreen"/>
     </LinearLayout>
 
 </RelativeLayout>

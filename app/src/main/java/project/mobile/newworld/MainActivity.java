@@ -43,12 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     public void launchFirstScreen(View view) {
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("Health", 10000);
-        editor.commit();
         Intent intent = new Intent(this, OptionsScreen.class);
         startActivity(intent);
     }
@@ -56,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
-
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("Health", 1000);
+        editor.commit();
 
     }
 }

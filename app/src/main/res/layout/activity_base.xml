@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,36 +9,68 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="project.mobile.newworld.Base">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/category"
-            android:layout_gravity="center_vertical"
-            android:text="category_specific" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar" />
+            <ImageView
+                android:layout_width="177dp"
+                android:layout_height="271dp"
+                android:id="@+id/MainBuilding"
+                android:background="@drawable/wbdud1"
+                android:onClick="goToMainBuilding"
+                 />
+
+            <ImageView
+                android:layout_width="190dp"
+                android:layout_height="148dp"
+                android:id="@+id/barracks"
+                android:onClick="goToBarracks"
+                />
+
+            <ImageView
+                android:layout_width="77dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/farm"
+                android:onClick="goToFarm"
+                />
+        </LinearLayout>
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Upgrade"
-            android:id="@+id/upgradeButton" />
+            android:id="@+id/upgradeB"
+            android:onClick="levelBarracks"
+             />
 
         <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="76dp"
-            android:layout_height="35dp"
-            android:text="Home"
-            android:id="@+id/homeButton" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upgrade"
+            android:id="@+id/upgradeF"
+            android:onClick="levelFarm"
+             />
 
-    </LinearLayout>
-</RelativeLayout>
+
+
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2"
+            android:text="test"
+            android:onClick="testResources"
+            android:layout_marginTop="56dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

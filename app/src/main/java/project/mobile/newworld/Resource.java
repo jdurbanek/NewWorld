@@ -10,13 +10,19 @@ public class Resource {
     private int walls;
     private int weapons;
     private int settlers;
+    private int wood;
+    private int stone;
+    private int metal;
+
 
 
     public Resource(){
         this.water = 0;
         this.food = 0;
+        this.wood = 0;
+        this.stone = 0;
+        this.metal = 0;
         this.health = 1000;
-        this.walls = 1;
         this.weapons = 0;
         this.settlers = 1;
     }
@@ -26,13 +32,6 @@ public class Resource {
         if yes, it upgrades and returns true
         else returns false.
      */
-    public boolean levelUpWalls(int water, int food){
-        if(water > 10 && food > 10){
-            this.walls++;
-            return true;
-        }
-        return false;
-    }
 
     /*
     the player can gain health depending on how much food and water they are willing to use.
@@ -41,9 +40,8 @@ public class Resource {
 
     }
 
-    public int getWater(){
-        return this.water;
-    }
+
+    public int getWater(){ return this.water;}
 
     public int getFood(){
         return this.food;
@@ -71,5 +69,46 @@ public class Resource {
 
     public void gatherFood(int food){
         this.food += food;
+    }
+
+    public int getStone() {return this.stone;}
+    public int getWood() {return this.wood;}
+    public int getMetal() {return this.metal;}
+
+    public void setWood(int ammount){
+        this.wood = ammount;
+    }
+    public void setStone(int ammount){
+        this.stone = ammount;
+    }
+    public void setMetal(int ammount){
+        this.metal = ammount;
+    }
+
+
+    public int collectWood(){
+        return this.wood+=100;
+    }
+    public int collectStone(){
+        return this.stone += 100;
+    }
+    public int collectMetal(){
+        return this.metal += 100;
+    }
+
+
+
+
+
+
+    //spending resources
+    public int spendMetal(int ammount){
+        return this.metal-ammount;
+    }
+    public int spendStone(int ammount){
+        return this.stone-ammount;
+    }
+    public int spendWood(int ammount){
+        return this.wood-ammount;
     }
 }
