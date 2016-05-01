@@ -30,12 +30,12 @@ public class WifiBroadcastReceiver extends BroadcastReceiver {
                     && state == SupplicantState.COMPLETED) {
 
                 boolean connected = checkConnectedToDesiredWifi();
-                Toast toast = Toast.makeText(context, "Connected: " + connected, Toast.LENGTH_LONG);
-                toast.show();
+               // Toast toast = Toast.makeText(context, "Connected: " + connected, Toast.LENGTH_LONG);
+               // toast.show();
             }else {
                 boolean connected = false;
-                Toast toast = Toast.makeText(context, "Connected: " + connected, Toast.LENGTH_LONG);
-                toast.show();
+               // Toast toast = Toast.makeText(context, "Connected: " + connected, Toast.LENGTH_LONG);
+               // toast.show();
             }
         }
     }
