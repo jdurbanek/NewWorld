@@ -106,12 +106,13 @@ public class MySettings extends AppCompatActivity {
         WifiManager wifiManager =
                 (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifi = wifiManager.getConnectionInfo();
-        final String checkHome = wifi.getSSID();
+        final String checkHome = wifi.getBSSID();
+        final String currentName = wifi.getSSID();
        // myMAC = wifi.getBSSID();
         if(myMAC.equals("")) {
             myMAC = wifi.getBSSID();
         }
-        if(!checkHome.equals(setHome)){
+        if(!checkHome.equals(myMAC)){
             myMAC = wifi.getBSSID();
 
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
@@ -121,7 +122,7 @@ public class MySettings extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             //dismiss the dialog
-                            setHome = checkHome;
+                            setHome = currentName;
                             currentHome.setText("Current Home: " + setHome);
                         }
                     });
