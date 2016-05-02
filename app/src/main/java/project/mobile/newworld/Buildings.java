@@ -48,4 +48,15 @@ public class Buildings {
     }
 
 
+    public void setMBLevel(int ammount){
+        this.mainBuilding = ammount;
+    }
+    public void setBarracksLevel(int ammount){
+        this.barracks = ammount;
+    }
+    public void setFarmLevel(int ammount){
+        this.farm = ammount;
+    }
+
+
 }

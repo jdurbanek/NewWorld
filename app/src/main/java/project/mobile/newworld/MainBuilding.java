@@ -22,11 +22,9 @@ public class MainBuilding extends AppCompatActivity {
     Resource myResources = new Resource();
     Buildings myBuildings = new Buildings();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main_building);
-
         super.onCreate(savedInstanceState);
 
         mbLevel = (TextView) findViewById(R.id.mbLevel);
@@ -34,42 +32,45 @@ public class MainBuilding extends AppCompatActivity {
         currStone = (TextView) findViewById(R.id.currStone);
         currMetal = (TextView) findViewById(R.id.currMetal);
 
-        SharedPreferences savedResourses = getSharedPreferences("Resource", 0);
-        int cWood = savedResourses.getInt("Wood", 0);
-        int cStone = savedResourses.getInt("Stone", 0);
-        int cMetal = savedResourses.getInt("Metal",0);
+        SharedPreferences saves = getSharedPreferences("Resource", 0);
+        //remove next 3 lines after testing is over
+        SharedPreferences.Editor editor = saves.edit();
+        editor.putInt("MB", 1);
+        editor.commit();
+        int cWood = saves.getInt("Wood", 0);
+        int cStone = saves.getInt("Stone", 0);
+        int cMetal = saves.getInt("Metal",0);
+        int cMB = saves.getInt("MB", 1);
 
         myResources.setWood(cWood);
         myResources.setStone(cStone);
         myResources.setMetal(cMetal);
-        currWood.setText("Wood " + savedResourses.getInt("Wood", 0));
-        currStone.setText("Stone " + savedResourses.getInt("Stone", 0));
-        currMetal.setText("Metal " + savedResourses.getInt("Metal", 0));
+        myBuildings.setMBLevel(cMB);
 
-        mbLevel.setText("Level " + getMainBuildingLevel());
-
+        currWood.setText("Wood " + cWood);
+        currStone.setText("Stone " + cStone);
+        currMetal.setText("Metal " + cMetal);
+        mbLevel.setText("Level " + cMB);
     }
 
-
-    public int getMainBuildingLevel() {
-        SharedPreferences savedResourses = getSharedPreferences("Resource", 0);
-        int currLevel = savedResourses.getInt("MB", 1);
-        return currLevel;
-    }
 
     public void levelMainBuilding(View view) {
-        int level = myBuildings.getMainBuilding();
+        SharedPreferences saves = getSharedPreferences("Resource", 0);
+        int level = saves.getInt("MB",1);
         if (level < 4) {
             if (myResources.getWood() >= level * 500) {
-                myResources.spendWood(level * 500);
                 myBuildings.upgradeMainBuilding();
-                SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
-                SharedPreferences.Editor editor = resources.edit();
+                SharedPreferences.Editor editor = saves.edit();
                 editor.putInt("Wood", myResources.spendWood(level * 500));
+                editor.putInt("MB", myBuildings.getMainBuilding());
                 editor.commit();
+                mbLevel.setText("Level " + saves.getInt("MB", 1));
+                currWood.setText("Wood " + saves.getInt("Wood", 0));
+
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "not enough resources", Toast.LENGTH_LONG);
                 toast.show();
+
             }
         } else if (level > 3 && level < 7) {
             if (myResources.getWood() >= level * 1000 && myResources.getStone() >= level * 250) {
@@ -99,24 +100,25 @@ public class MainBuilding extends AppCompatActivity {
     }
 
     public void collectWood(View view) {
-        SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
-        SharedPreferences.Editor editor = resources.edit();
+        SharedPreferences saves = getSharedPreferences(RESOURCE_NAME, 0);
+
+        SharedPreferences.Editor editor = saves.edit();
         editor.putInt("Wood", myResources.collectWood());
         editor.commit();
-        currWood.setText("Wood " + resources.getInt("Wood", 0));
+        currWood.setText("Wood " + saves.getInt("Wood", 0));
     }
     public void collectStone(View view) {
-        SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
-        SharedPreferences.Editor editor = resources.edit();
+        SharedPreferences saves = getSharedPreferences(RESOURCE_NAME, 0);
+        SharedPreferences.Editor editor = saves.edit();
         editor.putInt("Stone", myResources.collectStone());
         editor.commit();
-        currStone.setText("Stone " + resources.getInt("Stone", 0));
+        currStone.setText("Stone " + saves.getInt("Stone", 0));
     }
     public void collectMetal(View view) {
-        SharedPreferences resources = getSharedPreferences(RESOURCE_NAME, 0);
-        SharedPreferences.Editor editor = resources.edit();
+        SharedPreferences saves = getSharedPreferences(RESOURCE_NAME, 0);
+        SharedPreferences.Editor editor = saves.edit();
         editor.putInt("Metal", myResources.collectMetal());
         editor.commit();
-        currMetal.setText("Metal " + resources.getInt("Metal", 0));
+        currMetal.setText("Metal " + saves.getInt("Metal", 0));
     }
 }

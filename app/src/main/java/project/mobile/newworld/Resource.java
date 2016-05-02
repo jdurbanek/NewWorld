@@ -102,13 +102,17 @@ public class Resource {
 
 
     //spending resources
-    public int spendMetal(int ammount){
-        return this.metal-ammount;
+    public int spendWood(int amount){
+        this.wood -= amount;
+        return this.wood;
     }
-    public int spendStone(int ammount){
-        return this.stone-ammount;
+    public int spendMetal(int amount){
+        this.metal -= amount;
+        return this.metal;
     }
-    public int spendWood(int ammount){
-        return this.wood-ammount;
+    public int spendStone(int amount){
+        this.stone -= amount;
+        return this.stone;
     }
+
 }

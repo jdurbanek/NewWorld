@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 
 public class Base extends AppCompatActivity {
-    public static final String RESOURCE_NAME = "Resource";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
