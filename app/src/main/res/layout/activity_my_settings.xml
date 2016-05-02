@@ -10,16 +10,26 @@
     tools:context="project.mobile.newworld.MySettings"
     android:padding = "1dp"
     android:background="@android:color/holo_blue_dark"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name"
+        android:id="@+id/textView" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="User"
         android:ems="10"
-        android:id="@+id/nameEText" />
+        android:id="@+id/nameEText"
+        android:layout_weight="0.18"
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,6 +44,50 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/stepGoals" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Height"
+        android:id="@+id/heighttextView" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:weightSum="1">
+
+        <EditText
+            android:layout_width="118dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/heightFT" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="ft"
+            android:id="@+id/ftText"
+            android:layout_weight="0.22" />
+
+        <EditText
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/heightIN" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="in"
+            android:id="@+id/inText"
+            android:layout_weight="0.19" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,7 +107,8 @@
             android:text="Male"
             android:id="@+id/gM"
             android:layout_gravity="center"
-            android:checked="false" />
+            android:checked="false"
+            android:textColor="#010000" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -61,7 +116,8 @@
             android:text="Female"
             android:layout_gravity="center"
             android:id="@+id/gF"
-            android:checked="false" />
+            android:checked="false"
+            android:textColor="#000000" />
     </RadioGroup>
 
     <TextView

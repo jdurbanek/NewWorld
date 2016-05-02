@@ -30,6 +30,12 @@ public class MySettings extends AppCompatActivity {
     private int myGoal = 10000;
     private String setHome = "Not set";
     private String myMAC = "";
+    private EditText heightFt;
+    private EditText heightIn;
+    private TextView currentHeight;
+    private int myFeet;
+    private int myInches;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +48,17 @@ public class MySettings extends AppCompatActivity {
         goalLabel = (TextView)findViewById(R.id.goalsLabel);
         currentHome = (TextView)findViewById(R.id.currentHome);
         updateWifi = (Button)findViewById(R.id.updateHome);
+        heightFt = (EditText)findViewById(R.id.heightFT);
+        heightIn = (EditText)findViewById(R.id.heightIN);
+        currentHeight = (TextView)findViewById(R.id.heighttextView);
 
         SharedPreferences settings = getSharedPreferences("BaseInfo", 0);
         boolean amMale = settings.getBoolean("Male", false);
         boolean amFemale = settings.getBoolean("Female", false);
         String myName = settings.getString("Name", "User");
         int stepG = settings.getInt("Goal", 10000);
+        myFeet = settings.getInt("feet", 0);
+        myInches = settings.getInt("inches", 0);
         setHome = settings.getString("Wifi", setHome);
         myMAC = settings.getString("MAC", myMAC);
 
@@ -62,14 +73,19 @@ public class MySettings extends AppCompatActivity {
         goalLabel.setText("Step Goal: " + stepG);
         myGoal = stepG;
         currentHome.setText("Current Home: " +  setHome);
+        currentHeight.setText("Current Height: " + myFeet + " ft " + myInches + " in ");
+
     }
 
     public void saveSettings(View view){
 
         String myName = name.getText().toString().trim();
 
+
         try {
             myGoal = Integer.parseInt(sGoals.getText().toString().trim());
+          //  myFeet = Integer.parseInt(heightFt.getText().toString().trim());
+          //  myInches = Integer.parseInt(heightIn.getText().toString().trim());
         }catch (NumberFormatException e){
 
         }
@@ -80,6 +96,8 @@ public class MySettings extends AppCompatActivity {
         editor.putString("Name", myName);
         editor.putBoolean("Male", male.isChecked());
         editor.putBoolean("Female", female.isChecked());
+        editor.putInt("feet", myFeet);
+        editor.putInt("inches", myInches);
         editor.commit();
         finish();
     }
@@ -119,11 +137,22 @@ public class MySettings extends AppCompatActivity {
     protected void onStop(){
         super.onStop();
 
+        //Toast toast = Toast.makeText(getApplicationContext(), heightFt.getText().toString() + " " + heightIn.getText().toString(), Toast.LENGTH_LONG);
+        //toast.show();
+        String ft = heightFt.getText().toString();
+        String in = heightIn.getText().toString();
+
         try {
-            myGoal = Integer.parseInt(sGoals.getText().toString().trim());
+            if(sGoals.getText().toString().length() > 0)
+                myGoal = Integer.parseInt(sGoals.getText().toString().trim());
+            if(ft.length() > 0)
+                myFeet = Integer.parseInt(ft);
+            if(in.length() > 0)
+                myInches = Integer.parseInt(in);
         }catch (NumberFormatException e){
 
         }
+
         SharedPreferences settings = getSharedPreferences("BaseInfo", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("Goal", myGoal);
@@ -132,6 +161,8 @@ public class MySettings extends AppCompatActivity {
         editor.putBoolean("Female", female.isChecked());
         editor.putString("Wifi", setHome);
         editor.putString("MAC", myMAC);
+        editor.putInt("feet", myFeet);
+        editor.putInt("inches", myInches);
         editor.commit();
     }
 }
