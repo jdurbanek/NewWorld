@@ -36,6 +36,9 @@ public class MainBuilding extends AppCompatActivity {
         //remove next 3 lines after testing is over
         SharedPreferences.Editor editor = saves.edit();
         editor.putInt("MB", 1);
+        editor.putInt("Wood",0);
+        editor.putInt("Stone",0);
+        editor.putInt("Metal",0);
         editor.commit();
         int cWood = saves.getInt("Wood", 0);
         int cStone = saves.getInt("Stone", 0);
@@ -57,36 +60,62 @@ public class MainBuilding extends AppCompatActivity {
     public void levelMainBuilding(View view) {
         SharedPreferences saves = getSharedPreferences("Resource", 0);
         int level = saves.getInt("MB",1);
-        if (level < 4) {
-            if (myResources.getWood() >= level * 500) {
-                myBuildings.upgradeMainBuilding();
+        if (level <= 3) {
+            if (saves.getInt("Wood",0) >= level * 500) {
                 SharedPreferences.Editor editor = saves.edit();
                 editor.putInt("Wood", myResources.spendWood(level * 500));
+
+                myBuildings.upgradeMainBuilding();
                 editor.putInt("MB", myBuildings.getMainBuilding());
                 editor.commit();
+
                 mbLevel.setText("Level " + saves.getInt("MB", 1));
                 currWood.setText("Wood " + saves.getInt("Wood", 0));
 
+
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "not enough resources", Toast.LENGTH_LONG);
                 toast.show();
 
             }
-        } else if (level > 3 && level < 7) {
-            if (myResources.getWood() >= level * 1000 && myResources.getStone() >= level * 250) {
-                myResources.spendWood(level * 1000);
-                myResources.spendStone(level * 250);
+        } else if ((level >= 4) && (level <= 6)) {
+            if ((saves.getInt("Wood",0) >= (level * 1000)) &&
+                    ((saves.getInt("Stone",0))) >= (level * 250)) {
+
+                SharedPreferences.Editor editor = saves.edit();
+                editor.putInt("Wood", myResources.spendWood(level * 1000));
+                editor.putInt("Stone", myResources.spendStone(level * 250));
+
                 myBuildings.upgradeMainBuilding();
+                editor.putInt("MB", myBuildings.getMainBuilding());
+                editor.commit();
+
+                mbLevel.setText("Level " + saves.getInt("MB", 1));
+                currWood.setText("Wood " + saves.getInt("Wood", 0));
+                currStone.setText("Stone " + saves.getInt("Stone", 0));
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "not enough resources", Toast.LENGTH_LONG);
                 toast.show();
             }
-        } else if (level > 7 && level < 10) {
-            if (myResources.getWood() >= level * 1500 && myResources.getStone() >= level * 500 && myResources.getMetal() >= level * 100) {
-                myResources.spendWood(level * 1500);
-                myResources.spendStone(level * 500);
-                myResources.spendMetal(level * 100);
+        } else if (level >= 7 && level < 10) {
+            if ((saves.getInt("Wood",0) >= (level * 1500)) &&
+                    (saves.getInt("Stone",0) >= (level * 500)) &&
+                    (saves.getInt("Metal",0) >= (level * 100))) {
+
+                SharedPreferences.Editor editor = saves.edit();
+                editor.putInt("Wood", myResources.spendWood(level * 1500));
+                editor.putInt("Stone", myResources.spendStone(level * 500));
+                editor.putInt("Metal", myResources.spendMetal(level * 100));
+
                 myBuildings.upgradeMainBuilding();
+                editor.putInt("MB", myBuildings.getMainBuilding());
+                editor.commit();
+
+                mbLevel.setText("Level " + saves.getInt("MB", 1));
+                currWood.setText("Wood " + saves.getInt("Wood", 0));
+                currStone.setText("Stone " + saves.getInt("Stone", 0));
+                currMetal.setText("Metal " + saves.getInt("Metal", 0));
+
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "not enough resources", Toast.LENGTH_LONG);
                 toast.show();
@@ -101,7 +130,6 @@ public class MainBuilding extends AppCompatActivity {
 
     public void collectWood(View view) {
         SharedPreferences saves = getSharedPreferences(RESOURCE_NAME, 0);
-
         SharedPreferences.Editor editor = saves.edit();
         editor.putInt("Wood", myResources.collectWood());
         editor.commit();
