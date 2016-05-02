@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ public class MainBuilding extends AppCompatActivity {
     private TextView currWood;
     private TextView currStone;
     private TextView currMetal;
+    private ImageView backG;
 
     Resource myResources = new Resource();
     Buildings myBuildings = new Buildings();
@@ -31,6 +33,7 @@ public class MainBuilding extends AppCompatActivity {
         currWood = (TextView) findViewById(R.id.currWood);
         currStone = (TextView) findViewById(R.id.currStone);
         currMetal = (TextView) findViewById(R.id.currMetal);
+        backG = (ImageView) findViewById(R.id.mainBuilding);
 
         SharedPreferences saves = getSharedPreferences("Resource", 0);
         //remove next 3 lines after testing is over
@@ -68,6 +71,10 @@ public class MainBuilding extends AppCompatActivity {
                 myBuildings.upgradeMainBuilding();
                 editor.putInt("MB", myBuildings.getMainBuilding());
                 editor.commit();
+
+                if(saves.getInt("MB",1)==4){
+                    backG.setBackgroundResource(R.drawable.sbdud1);
+                }
 
                 mbLevel.setText("Level " + saves.getInt("MB", 1));
                 currWood.setText("Wood " + saves.getInt("Wood", 0));

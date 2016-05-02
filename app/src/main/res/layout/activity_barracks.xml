@@ -79,7 +79,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mb level"
+            android:text="Barracks level"
             android:id="@+id/bLevel"
             android:layout_alignBaseline="@+id/button5"
             android:layout_alignBottom="@+id/button5"

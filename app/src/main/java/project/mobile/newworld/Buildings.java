@@ -26,10 +26,6 @@ public class Buildings {
         return this.barracks;
     }
 
-    public int getWall(){
-        return this.wall;
-    }
-
     public int getFarm(){
         return this.farm;
     }
@@ -39,9 +35,6 @@ public class Buildings {
     }
     public void upgradeBarracks(){
         this.barracks++;
-    }
-    public void upgradeWall(){
-        this.wall++;
     }
     public void upgradeFarm(){
         this.farm++;
