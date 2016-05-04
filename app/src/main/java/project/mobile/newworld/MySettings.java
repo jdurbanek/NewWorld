@@ -4,6 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
@@ -104,33 +107,40 @@ public class MySettings extends AppCompatActivity {
     }
 
     public void updateMyWifi(View view){
-        WifiManager wifiManager =
-                (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifi = wifiManager.getConnectionInfo();
-        final String checkHome = wifi.getBSSID();
-        final String currentName = wifi.getSSID();
-       // myMAC = wifi.getBSSID();
-        if(myMAC.equals("")) {
-            myMAC = wifi.getBSSID();
-        }
-        if(!checkHome.equals(myMAC)){
-            myMAC = wifi.getBSSID();
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if(mWifi.isConnected()) {
+            WifiManager wifiManager =
+                    (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            WifiInfo wifi = wifiManager.getConnectionInfo();
+            final String checkHome = wifi.getBSSID();
+            final String currentName = wifi.getSSID();
+            // myMAC = wifi.getBSSID();
+            if (myMAC.equals("")) {
+                myMAC = wifi.getBSSID();
+            }
+            if (!checkHome.equals(myMAC)) {
+                myMAC = wifi.getBSSID();
 
-            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-            dlgAlert.setMessage("Are you sure you want to update your home to " + currentName + "?");
-            dlgAlert.setTitle("Update Home");
-            dlgAlert.setPositiveButton("Ok",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            //dismiss the dialog
-                            setHome = currentName;
-                            currentHome.setText("Current Home: " + setHome);
-                        }
-                    });
-            dlgAlert.setCancelable(true);
-            dlgAlert.create().show();
-        }else{
-            Toast toast = Toast.makeText(getApplicationContext(), "You are already at Home!!", Toast.LENGTH_LONG);
+                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
+                dlgAlert.setMessage("Are you sure you want to update your home to " + currentName + "?");
+                dlgAlert.setTitle("Update Home");
+                dlgAlert.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //dismiss the dialog
+                                setHome = currentName;
+                                currentHome.setText("Current Home: " + setHome);
+                            }
+                        });
+                dlgAlert.setCancelable(true);
+                dlgAlert.create().show();
+            } else {
+                Toast toast = Toast.makeText(getApplicationContext(), "You are already at Home!!", Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }else {
+            Toast toast = Toast.makeText(getApplicationContext(), "You are not connected to any WiFi.", Toast.LENGTH_LONG);
             toast.show();
         }
     }
