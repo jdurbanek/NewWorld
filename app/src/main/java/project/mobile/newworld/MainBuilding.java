@@ -97,6 +97,10 @@ public class MainBuilding extends AppCompatActivity {
                 editor.putInt("MB", myBuildings.getMainBuilding());
                 editor.commit();
 
+                if(saves.getInt("MB",1)==7){
+                    backG.setBackgroundResource(R.drawable.mbdud1);
+                }
+
                 mbLevel.setText("Level " + saves.getInt("MB", 1));
                 currWood.setText("Wood " + saves.getInt("Wood", 0));
                 currStone.setText("Stone " + saves.getInt("Stone", 0));

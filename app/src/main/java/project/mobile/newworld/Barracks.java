@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,8 @@ public class Barracks extends AppCompatActivity {
     private TextView currWood;
     private TextView currStone;
     private TextView currMetal;
+    private ImageView backG;
+
 
     Resource myResources = new Resource();
     Buildings myBuildings = new Buildings();
@@ -31,6 +34,7 @@ public class Barracks extends AppCompatActivity {
         currWood = (TextView) findViewById(R.id.currWood);
         currStone = (TextView) findViewById(R.id.currStone);
         currMetal = (TextView) findViewById(R.id.currMetal);
+        backG = (ImageView) findViewById(R.id.barracks);
 
         SharedPreferences saves = getSharedPreferences("Resource", 0);
         //remove next 3 lines after testing is over
@@ -69,6 +73,9 @@ public class Barracks extends AppCompatActivity {
                 editor.putInt("Barracks", myBuildings.getBarracks());
                 editor.commit();
 
+                if(saves.getInt("Barracks",1)==4){
+                    backG.setBackgroundResource(R.drawable.stonebarracks);
+                }
                 bLevel.setText("Level " + saves.getInt("Barracks", 1));
                 currWood.setText("Wood " + saves.getInt("Wood", 0));
 
@@ -89,6 +96,10 @@ public class Barracks extends AppCompatActivity {
                 myBuildings.upgradeBarracks();
                 editor.putInt("Barracks", myBuildings.getBarracks());
                 editor.commit();
+
+                if(saves.getInt("Barracks",1)==7){
+                    backG.setBackgroundResource(R.drawable.metalbarracks);
+                }
 
                 bLevel.setText("Level " + saves.getInt("Barracks", 1));
                 currWood.setText("Wood " + saves.getInt("Wood", 0));

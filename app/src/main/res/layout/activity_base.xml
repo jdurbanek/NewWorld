@@ -31,7 +31,7 @@
                 android:layout_height="205dp"
                 android:id="@+id/barracks"
                 android:onClick="goToBarracks"
-                android:background="@drawable/wbdud1"
+                android:background="@drawable/woodbarracks"
                 />
 
             <ImageView
@@ -39,9 +39,10 @@
                 android:layout_height="205dp"
                 android:id="@+id/farm"
                 android:onClick="goToFarm"
-                android:background="@drawable/wbdud1"
+                android:background="@drawable/woodmesshall"
                 />
         </LinearLayout>
+
 
 
 

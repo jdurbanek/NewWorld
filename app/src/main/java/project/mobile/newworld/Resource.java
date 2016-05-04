@@ -87,13 +87,13 @@ public class Resource {
 
 
     public int collectWood(){
-        return this.wood+=1000;
+        return this.wood+=10000;
     }
     public int collectStone(){
-        return this.stone += 250;
+        return this.stone += 10000;
     }
     public int collectMetal(){
-        return this.metal += 100;
+        return this.metal += 10000;
     }
 
 
