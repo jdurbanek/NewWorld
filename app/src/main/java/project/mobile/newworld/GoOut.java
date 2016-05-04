@@ -35,6 +35,14 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
     private Sensor mStepDetectorSensor;
     private int currSteps = 0;
     private int numWeeks = 0;
+    private String today;
+    private int currDaySteps;
+    private double currDayDistance;
+    private double currDayTime;
+    //used to tell when you last comitted your data
+    private String currstatDay;
+    private double currDistance;
+    private double currTime;
 
     Button butnstart, butnreset;
     TextView time;
@@ -71,7 +79,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
         currSteps = settings.getInt("currSteps", 0);
-        //numWeeks = settings.getInt("numWeeks", 0); will use when functional TODO
+        numWeeks = settings.getInt("numWeeks", 0); //will use when functional TODO
         steps.setText("" + currSteps);
 
         mSensorManager = (SensorManager)
@@ -94,26 +102,23 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
 
         //fake week persistence
-        ArrayList<Week> weekList = new ArrayList<>();
-        numWeeks = 0;// take out for final version when num weeks actually changes TODO
+        //ArrayList<Week> weekList = new ArrayList<>();
+        //numWeeks = 0;// take out for final version when num weeks actually changes TODO
 
 
 
         //dummy data date change will be detected and weeks will be created automatically TODO
         //for(int x = 0; x < 10 ; x++){
             String date;
-            /*
-            Date newDate = new Date();
-            Format formatter;
-            formatter = new SimpleDateFormat("dd/MM/yyyy");
-            date = formatter.format(newDate);
-            */
+
 
             //extremely hard coded to put in dummy data.
             Date newDate = new Date();
             Format formatter;
             formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String today = formatter.format(newDate);
+            today = formatter.format(newDate);
+
+            /*
             date = "04/17/2106";
             Week week = new Week(date);
             int dayNum = 17;
@@ -150,10 +155,12 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             }
             weekList.add(week);
             numWeeks++;
+            */
         //}
 
 
         //SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
+        /*
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("numWeeks",numWeeks);
         for(int t = 0; t < weekList.size(); t++){
@@ -162,7 +169,10 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             editor.commit();
         }
         //editor.commit();
+        */
 
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("numWeeks",numWeeks);
     }
 
     @Override
@@ -248,11 +258,41 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
+        String strToParse = settings.getString(numWeeks + "", "1");
+        Week currWeek = unparse(strToParse);
+        Day newDay = currWeek.getDays().get(currWeek.getDays().size() - 1) ;
+        currDistance = currSteps*.000473;
+
+        if(!newDay.getDate().equals(today)){
+            //update that days stats
+
+
+            //currTime == current activity time saved
+            //currDayTime == total day time
+            newDay = new Day(today);
+            newDay.setSteps(currSteps);
+            newDay.setDistance(currDistance);
+            newDay.setTime(currTime);
+            editor.putInt("currDaySteps", currSteps);
+
+            //do distance formula
+            editor.putInt("currDayDistance", (int) currDayDistance);
+            editor.putInt("currDayTime", (int) currDayTime);
+            currWeek.addDay(newDay);
+        }
+        else{
+            currDayDistance += (settings.getInt("currDayDistance", 0) + currDistance);
+            currDaySteps += (settings.getInt("currDaySteps", 0) + currSteps);
+            currDayTime += (settings.getInt("currDayTime", 0) + currTime);
+        }
+        editor.putString(numWeeks + "", currWeek.toString());
+
 
         //add new resources to total resources
         wood += settings.getInt("Wood", 0);
         metal += settings.getInt("Metal", 0);
         stone += settings.getInt("Stone", 0);
+
 
         //save resources
         editor.putInt("Wood", wood);
@@ -282,10 +322,27 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         editor.putInt("currSteps", currSteps);
         editor.commit();
         currSteps = 0;// have to persist
+        currTime = 0;
+        currDistance = 0;
 
         steps.setText("0");
     }
 
+    public Week unparse(String string){
+
+
+        String[] dayList = string.split(" ");
+        Week week = new Week("");
+
+
+        for(int i = 0; i < dayList.length ; i++){
+            String[] oneDay = dayList[i].split(",");
+            Day day = new Day(oneDay[0], Integer.parseInt(oneDay[1]), Double.parseDouble(oneDay[2]), Double.parseDouble(oneDay[3]));
+            week.setStartDate(day.getDate());
+            week.addDay(day);
+        }
+        return week;
+    }
 
 
     public void start(View view) {
