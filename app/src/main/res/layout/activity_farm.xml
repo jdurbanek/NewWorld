@@ -9,12 +9,99 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="project.mobile.newworld.Farm">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upgrade"
-        android:id="@+id/upgradeF"
-        android:onClick="levelFarm"
-        />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:id="@+id/relativeLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wood"
+                android:id="@+id/currWood"
+                android:layout_alignTop="@+id/currStone"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stone"
+                android:id="@+id/currStone"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Metal"
+                android:id="@+id/currMetal"
+                android:layout_alignTop="@+id/currStone"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:layout_below="@+id/relativeLayout">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Collect Wood"
+                android:onClick="collectWood"
+                android:id="@+id/button3"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Collect Stone"
+                android:onClick="collectStone"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Collect Metal"
+                android:id="@+id/colMaterial"
+                android:layout_gravity="center_horizontal"
+                android:onClick="collectMetal"
+                android:layout_alignBottom="@+id/button3"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mess Hall level"
+            android:id="@+id/mhLevel"
+            android:layout_alignBaseline="@+id/button5"
+            android:layout_alignBottom="@+id/button5"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="351dp"
+            android:background="@drawable/woodmesshall"
+            android:id="@+id/messhall"
+            android:layout_weight="0.60" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upgrade"
+            android:id="@+id/upgradeMH"
+            android:onClick="levelMessHall"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 
 </RelativeLayout>

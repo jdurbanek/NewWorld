@@ -15,7 +15,7 @@ public class Farm extends AppCompatActivity {
 
 
     public static final String RESOURCE_NAME = "Resource";
-    private TextView bLevel;
+    private TextView mhLevel;
     private TextView currWood;
     private TextView currStone;
     private TextView currMetal;
@@ -27,19 +27,19 @@ public class Farm extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_barracks);
+        setContentView(R.layout.activity_farm);
         super.onCreate(savedInstanceState);
 
-        bLevel = (TextView) findViewById(R.id.bLevel);
+        mhLevel = (TextView) findViewById(R.id.mhLevel);
         currWood = (TextView) findViewById(R.id.currWood);
         currStone = (TextView) findViewById(R.id.currStone);
         currMetal = (TextView) findViewById(R.id.currMetal);
-        backG = (ImageView) findViewById(R.id.barracks);
+        backG = (ImageView) findViewById(R.id.messhall);
 
         SharedPreferences saves = getSharedPreferences("Resource", 0);
         //remove next 3 lines after testing is over
         SharedPreferences.Editor editor = saves.edit();
-        editor.putInt("Barracks", 1);
+        editor.putInt("MessHall", 1);
         editor.putInt("Wood",0);
         editor.putInt("Stone",0);
         editor.putInt("Metal",0);
@@ -47,36 +47,36 @@ public class Farm extends AppCompatActivity {
         int cWood = saves.getInt("Wood", 0);
         int cStone = saves.getInt("Stone", 0);
         int cMetal = saves.getInt("Metal",0);
-        int cB = saves.getInt("Barracks", 1);
+        int cMH = saves.getInt("MessHall", 1);
 
         myResources.setWood(cWood);
         myResources.setStone(cStone);
         myResources.setMetal(cMetal);
-        myBuildings.setBarracksLevel(cB);
+        myBuildings.setMessHallLevel(cMH);
 
         currWood.setText("Wood " + cWood);
         currStone.setText("Stone " + cStone);
         currMetal.setText("Metal " + cMetal);
-        bLevel.setText("Level " + cB);
+        mhLevel.setText("Level " + cMH);
     }
 
 
-    public void levelBarracks(View view) {
+    public void levelMessHall(View view) {
         SharedPreferences saves = getSharedPreferences("Resource", 0);
-        int level = saves.getInt("Barracks",1);
+        int level = saves.getInt("MessHall",1);
         if (level <= 3) {
             if (saves.getInt("Wood",0) >= level * 500) {
                 SharedPreferences.Editor editor = saves.edit();
                 editor.putInt("Wood", myResources.spendWood(level * 500));
 
-                myBuildings.upgradeBarracks();
-                editor.putInt("Barracks", myBuildings.getBarracks());
+                myBuildings.upgradeMessHall();
+                editor.putInt("MessHall", myBuildings.getMessHall());
                 editor.commit();
 
-                if(saves.getInt("Barracks",1)==4){
-                    backG.setBackgroundResource(R.drawable.stonebarracks);
+                if(saves.getInt("MessHall",1)==4){
+                    backG.setBackgroundResource(R.drawable.stonemesshall);
                 }
-                bLevel.setText("Level " + saves.getInt("Barracks", 1));
+                mhLevel.setText("Level " + saves.getInt("MessHall", 1));
                 currWood.setText("Wood " + saves.getInt("Wood", 0));
 
 
@@ -93,15 +93,15 @@ public class Farm extends AppCompatActivity {
                 editor.putInt("Wood", myResources.spendWood(level * 1000));
                 editor.putInt("Stone", myResources.spendStone(level * 250));
 
-                myBuildings.upgradeBarracks();
-                editor.putInt("Barracks", myBuildings.getBarracks());
+                myBuildings.upgradeMessHall();
+                editor.putInt("MessHall", myBuildings.getMessHall());
                 editor.commit();
 
-                if(saves.getInt("Barracks",1)==7){
-                    backG.setBackgroundResource(R.drawable.metalbarracks);
+                if(saves.getInt("MessHall",1)==7){
+                    backG.setBackgroundResource(R.drawable.metalmesshall);
                 }
 
-                bLevel.setText("Level " + saves.getInt("Barracks", 1));
+                mhLevel.setText("Level " + saves.getInt("MessHall", 1));
                 currWood.setText("Wood " + saves.getInt("Wood", 0));
                 currStone.setText("Stone " + saves.getInt("Stone", 0));
             } else {
@@ -118,11 +118,11 @@ public class Farm extends AppCompatActivity {
                 editor.putInt("Stone", myResources.spendStone(level * 500));
                 editor.putInt("Metal", myResources.spendMetal(level * 100));
 
-                myBuildings.upgradeBarracks();
-                editor.putInt("Barracks", myBuildings.getBarracks());
+                myBuildings.upgradeMessHall();
+                editor.putInt("MessHall", myBuildings.getMessHall());
                 editor.commit();
 
-                bLevel.setText("Level " + saves.getInt("Barracks", 1));
+                mhLevel.setText("Level " + saves.getInt("MessHall", 1));
                 currWood.setText("Wood " + saves.getInt("Wood", 0));
                 currStone.setText("Stone " + saves.getInt("Stone", 0));
                 currMetal.setText("Metal " + saves.getInt("Metal", 0));
@@ -133,7 +133,7 @@ public class Farm extends AppCompatActivity {
             }
 
         } else if (level == 10) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Barracks is max level", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getApplicationContext(), "MessHall is max level", Toast.LENGTH_LONG);
             toast.show();
         }
 

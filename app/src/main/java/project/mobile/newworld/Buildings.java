@@ -26,7 +26,7 @@ public class Buildings {
         return this.barracks;
     }
 
-    public int getFarm(){
+    public int getMessHall(){
         return this.farm;
     }
 
@@ -36,7 +36,7 @@ public class Buildings {
     public void upgradeBarracks(){
         this.barracks++;
     }
-    public void upgradeFarm(){
+    public void upgradeMessHall(){
         this.farm++;
     }
 
@@ -47,7 +47,7 @@ public class Buildings {
     public void setBarracksLevel(int ammount){
         this.barracks = ammount;
     }
-    public void setFarmLevel(int ammount){
+    public void setMessHallLevel(int ammount){
         this.farm = ammount;
     }
 
