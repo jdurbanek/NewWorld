@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class MySettings extends AppCompatActivity {
     private EditText sGoals;
     private TextView goalLabel;
     private TextView currentHome;
-    private Button updateWifi;
+    private ImageButton updateWifi;
     private int myGoal = 10000;
     private String setHome = "Not set";
     private String myMAC = "";
@@ -47,7 +48,7 @@ public class MySettings extends AppCompatActivity {
         sGoals = (EditText)findViewById(R.id.stepGoals);
         goalLabel = (TextView)findViewById(R.id.goalsLabel);
         currentHome = (TextView)findViewById(R.id.currentHome);
-        updateWifi = (Button)findViewById(R.id.updateHome);
+        updateWifi = (ImageButton)findViewById(R.id.updateHome);
         heightFt = (EditText)findViewById(R.id.heightFT);
         heightIn = (EditText)findViewById(R.id.heightIN);
         currentHeight = (TextView)findViewById(R.id.heighttextView);
@@ -116,7 +117,7 @@ public class MySettings extends AppCompatActivity {
             myMAC = wifi.getBSSID();
 
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-            dlgAlert.setMessage("Are you sure you want to update your home to " + checkHome + "?");
+            dlgAlert.setMessage("Are you sure you want to update your home to " + currentName + "?");
             dlgAlert.setTitle("Update Home");
             dlgAlert.setPositiveButton("Ok",
                     new DialogInterface.OnClickListener() {
