@@ -110,13 +110,21 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             */
 
             //extremely hard coded to put in dummy data.
-
+            Date newDate = new Date();
+            Format formatter;
+            formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String today = formatter.format(newDate);
             date = "04/17/2106";
             Week week = new Week(date);
             int dayNum = 17;
             int month  = 4;
-            for(int j = 0; j < 16; j++){
-                date = "0" + month+ "/" + dayNum + "/2016";
+            int j = 0;
+            boolean done = false;
+            while(!done){
+                String dayNumStr = "" +dayNum;
+                if(dayNum < 10)
+                    dayNumStr = "0" + dayNum;
+                date = dayNumStr+ "/" +"0" + month + "/2016";
                 Day day = new Day(date);
                 day.setSteps((j)*215 +3000 );
                 day.setTime((j) * 10 + 5);
@@ -125,6 +133,12 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
                     weekList.add(week);
                     week = new Week(day.getDate());
                     numWeeks++;
+                }
+                if(date.equals(today)){
+                    day.setSteps(0);
+                    day.setDistance(0);
+                    day.setTime(0);
+                    done = true;
                 }
                 week.addDay(day);
                 if(dayNum == 30) {
