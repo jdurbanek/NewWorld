@@ -9,21 +9,68 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Accept"
+                android:id="@+id/accept"
+                android:layout_gravity="right"
+                android:layout_weight="0.19" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Enter Week"
+                    android:id="@+id/textView" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Week Nums"
+                    android:id="@+id/dispWeeks" />
+
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/choice"
+                android:layout_weight="0.17"
+                android:textAlignment="center"
+                android:hint="Enter week" />
+
+        </LinearLayout>
 
         <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="457dp"
-            android:id="@+id/listView3"
-            android:layout_centerHorizontal="true" />
+            android:layout_width="match_parent"
+            android:layout_height="342dp"
+            android:id="@+id/weeklyList"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.31" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Home"
-            android:id="@+id/hButton"
+            android:id="@+id/home"
             android:layout_gravity="center_horizontal"
             android:onClick="launchHomeScreen"/>
+
     </LinearLayout>
 
 </RelativeLayout>

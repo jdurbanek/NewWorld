@@ -100,23 +100,57 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
 
         //dummy data date change will be detected and weeks will be created automatically TODO
-        for(int x = 0; x < 10 ; x++){
+        //for(int x = 0; x < 10 ; x++){
             String date;
+            /*
             Date newDate = new Date();
             Format formatter;
             formatter = new SimpleDateFormat("dd/MM/yyyy");
             date = formatter.format(newDate);
+            */
+
+            //extremely hard coded to put in dummy data.
+            Date newDate = new Date();
+            Format formatter;
+            formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String today = formatter.format(newDate);
+            date = "04/17/2106";
             Week week = new Week(date);
-            for(int j = 0; j < 7; j++){
+            int dayNum = 17;
+            int month  = 4;
+            int j = 0;
+            boolean done = false;
+            while(!done){
+                String dayNumStr = "" +dayNum;
+                if(dayNum < 10)
+                    dayNumStr = "0" + dayNum;
+                date = dayNumStr+ "/" +"0" + month + "/2016";
                 Day day = new Day(date);
-                day.setSteps((j+x)*215 +3000 );
-                day.setTime((j+x) * 10 + 5);
+                day.setSteps((j)*215 +3000 );
+                day.setTime((j) * 10 + 5);
                 day.setDistance(day.getSteps() / 2000);
+                if(week.getDays().size() == 7){
+                    weekList.add(week);
+                    week = new Week(day.getDate());
+                    numWeeks++;
+                }
+                if(date.equals(today)){
+                    day.setSteps(0);
+                    day.setDistance(0);
+                    day.setTime(0);
+                    done = true;
+                }
                 week.addDay(day);
+                if(dayNum == 30) {
+                    dayNum = 1;
+                    month = 5;
+                }
+                else
+                    dayNum++;
             }
             weekList.add(week);
             numWeeks++;
-        }
+        //}
 
 
         //SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
