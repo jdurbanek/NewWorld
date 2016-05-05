@@ -1,6 +1,7 @@
 package project.mobile.newworld;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class CurrentWeek extends Fragment {
     private String mParam2;
 
     private Button viewWeekly;
+    private Button home;
     private int numWeeks;
     private String dispWeek;
 
@@ -81,17 +83,18 @@ public class CurrentWeek extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_current_week, container, false);
         viewWeekly = (Button)view.findViewById(R.id.launchWeekly);
+        home = (Button)view.findViewById(R.id.hButton);
         listView  = (ListView) view.findViewById(R.id.currWeek);
 
 
 
 
 
-        SharedPreferences settings = this.getActivity().getSharedPreferences(PREF_NAME, 0);
+        SharedPreferences settings = getActivity().getSharedPreferences(PREF_NAME, 0);
         numWeeks = settings.getInt("numWeeks", 0);
-        //System.out.print(numWeeks);
+        System.out.print(numWeeks);
         dispWeek = settings.getString(("" + numWeeks), "This no is work " + numWeeks);
-
+        System.out.println("Week in currWeek" + dispWeek);
         //Week week = unparse(dispWeek);
 
         //toast to test output
@@ -157,6 +160,14 @@ public class CurrentWeek extends Fragment {
                         .replace(R.id.main_fragment_container, Weekly.newInstance(null, null))
                         .addToBackStack(null)
                         .commit();
+            }
+
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), OptionsScreen.class);
+                startActivity(intent);
             }
 
         });

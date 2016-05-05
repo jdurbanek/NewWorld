@@ -33,7 +33,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
     private Sensor mStepDetectorSensor;
-    private int currSteps = 0;
+    private int currSteps = 500;
     private int numWeeks = 0;
     private String today;
     private int currDaySteps;
@@ -78,7 +78,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
 
         SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-        currSteps = settings.getInt("currSteps", 0);
+        currSteps = 500; //settings.getInt("currSteps", 0);
         //numWeeks = settings.getInt("numWeeks", 0); //will use when functional TODO
         steps.setText("" + currSteps);
 
@@ -100,7 +100,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             myText.setText("Biking");
         }
 
-
+/*
         //fake week persistence
         ArrayList<Week> weekList = new ArrayList<>();
         numWeeks = 0;// take out for final version when num weeks actually changes TODO
@@ -156,12 +156,12 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             }
             weekList.add(week);
             numWeeks++;
-
+*/
         //}
 
 
         //SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-
+/*
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("numWeeks",numWeeks);
         for(int t = 0; t < weekList.size(); t++){
@@ -171,7 +171,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         }
         //editor.commit();
 
-
+*/
         //SharedPreferences.Editor editor = settings.edit();
         //editor.putInt("numWeeks",numWeeks);
     }
@@ -290,6 +290,22 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 */
 
         //add new resources to total resources
+        double cdistance = 1;
+        double ctime = 10.5;
+        int csteps = 1200;
+        numWeeks = settings.getInt("numWeeks", 1);
+        String strWeek = settings.getString(("" + numWeeks), "This no is work " + numWeeks);
+
+        Week currWeek = unparse(strWeek);
+        currWeek.getDays().get(currWeek.getDays().size() -1).setDistance(cdistance + currWeek.getDays().get(currWeek.getDays().size() -1).getDistance());
+        currWeek.getDays().get(currWeek.getDays().size() -1).setSteps(csteps + currWeek.getDays().get(currWeek.getDays().size() - 1).getSteps());
+        currWeek.getDays().get(currWeek.getDays().size() -1).setTime(ctime + currWeek.getDays().get(currWeek.getDays().size() - 1).getTime());
+        strWeek = currWeek.toString();
+        System.out.println(strWeek + "dis");
+        editor.putString(numWeeks+ "", strWeek);
+
+
+
         wood += settings.getInt("Wood", 0);
         metal += settings.getInt("Metal", 0);
         stone += settings.getInt("Stone", 0);
@@ -328,7 +344,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         steps.setText("0");
     }
-/*
+
     public Week unparse(String string){
 
 
@@ -339,12 +355,12 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         for(int i = 0; i < dayList.length ; i++){
             String[] oneDay = dayList[i].split(",");
             Day day = new Day(oneDay[0], Integer.parseInt(oneDay[1]), Double.parseDouble(oneDay[2]), Double.parseDouble(oneDay[3]));
-            week.setStartDate(day.getDate());
             week.addDay(day);
         }
+        week.setStartDate(week.getDays().get(0).getDate());
         return week;
     }
-*/
+
 
     public void start(View view) {
         //Intent intent = new Intent(this, MyType.class);
