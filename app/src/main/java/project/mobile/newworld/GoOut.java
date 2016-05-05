@@ -33,7 +33,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mStepCounterSensor;
     private Sensor mStepDetectorSensor;
-    private int currSteps = 500;
+    private int currSteps = 0;
     private int numWeeks = 0;
     private String today;
     private int currDaySteps;
@@ -78,7 +78,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
 
         SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-        currSteps = 500; //settings.getInt("currSteps", 0);
+        currSteps = 0; //settings.getInt("currSteps", 0);
         //numWeeks = settings.getInt("numWeeks", 0); //will use when functional TODO
         steps.setText("" + currSteps);
 
@@ -290,9 +290,15 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 */
 
         //add new resources to total resources
-        double cdistance = 1;
-        double ctime = 10.5;
-        int csteps = 1200;
+        String timeStr = time.getText().toString().trim();
+        String[] tmpArr = timeStr.split(":");
+        double ctime = 0;
+        if(!(tmpArr.length<3)) {
+            ctime = ((double) Integer.parseInt(tmpArr[0]) + (double) Integer.parseInt(tmpArr[1]) / 60);
+        }
+
+        int csteps = Integer.parseInt(steps.getText().toString().trim());
+        double cdistance = csteps * .0005;
         numWeeks = settings.getInt("numWeeks", 1);
         String strWeek = settings.getString(("" + numWeeks), "This no is work " + numWeeks);
 
