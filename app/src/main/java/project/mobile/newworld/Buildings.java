@@ -40,6 +40,9 @@ public class Buildings {
         this.farm++;
     }
 
+    public void decrementMessHall(){this.farm--;}
+    public void decrementBarracks(){this.barracks--;}
+    public void decrementMainBuilding(){this.mainBuilding--;}
 
     public void setMBLevel(int ammount){
         this.mainBuilding = ammount;

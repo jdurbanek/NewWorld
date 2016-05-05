@@ -37,7 +37,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="205dp"
-                android:id="@+id/farm"
+                android:id="@+id/messhall"
                 android:onClick="goToFarm"
                 android:background="@drawable/woodmesshall"
                 />

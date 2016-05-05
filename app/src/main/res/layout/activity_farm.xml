@@ -7,6 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="1dp"
+    android:background="@color/wallet_hint_foreground_holo_light"
     tools:context="project.mobile.newworld.Farm">
 
     <LinearLayout
@@ -95,12 +97,25 @@
             android:layout_weight="0.60" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upgrade"
-            android:id="@+id/upgradeMH"
-            android:onClick="levelMessHall"
-            android:layout_gravity="center_horizontal" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decrement Level"
+        android:id="@+id/decrement"
+        android:onClick="decrementLevel" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upgrade"
+                android:id="@+id/upgradeMH"
+                android:onClick="levelMessHall"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
 
     </LinearLayout>
 

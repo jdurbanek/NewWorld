@@ -38,12 +38,13 @@ public class Farm extends AppCompatActivity {
 
         SharedPreferences saves = getSharedPreferences("Resource", 0);
         //remove next 3 lines after testing is over
-        SharedPreferences.Editor editor = saves.edit();
+       /* SharedPreferences.Editor editor = saves.edit();
         editor.putInt("MessHall", 1);
         editor.putInt("Wood",0);
         editor.putInt("Stone",0);
         editor.putInt("Metal",0);
         editor.commit();
+        */
         int cWood = saves.getInt("Wood", 0);
         int cStone = saves.getInt("Stone", 0);
         int cMetal = saves.getInt("Metal",0);
@@ -58,6 +59,8 @@ public class Farm extends AppCompatActivity {
         currStone.setText("Stone " + cStone);
         currMetal.setText("Metal " + cMetal);
         mhLevel.setText("Level " + cMH);
+
+        setImages();
     }
 
 
@@ -160,4 +163,34 @@ public class Farm extends AppCompatActivity {
         editor.commit();
         currMetal.setText("Metal " + saves.getInt("Metal", 0));
     }
+
+    public void setImages(){
+        SharedPreferences saves = getSharedPreferences("Resource", 0);
+
+        if(saves.getInt("MessHall",1)>=4 && saves.getInt("MessHall",1)<7){
+            backG.setBackgroundResource(R.drawable.stonemesshall);
+        }
+        if(saves.getInt("MessHall",1)>=7){
+            backG.setBackgroundResource(R.drawable.metalmesshall);
+        }
+
+    }
+
+    public void decrementLevel(View view){
+        SharedPreferences saves = getSharedPreferences(RESOURCE_NAME, 0);
+        SharedPreferences.Editor editor = saves.edit();
+        int currLevel = saves.getInt("MessHall",0);
+        currLevel--;
+        myBuildings.decrementMessHall();
+        editor.putInt("MessHall",currLevel);
+        editor.commit();
+        mhLevel.setText("Level " + saves.getInt("MessHall", 1));
+        if(saves.getInt("MessHall",1)<4){
+            backG.setBackgroundResource(R.drawable.woodmesshall);
+        }
+        else if(saves.getInt("MessHall",1)<7){
+            backG.setBackgroundResource(R.drawable.stonemesshall);
+        }
+    }
+
 }

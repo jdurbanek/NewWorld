@@ -38,12 +38,13 @@ public class Barracks extends AppCompatActivity {
 
         SharedPreferences saves = getSharedPreferences("Resource", 0);
         //remove next 3 lines after testing is over
-        SharedPreferences.Editor editor = saves.edit();
+       /* SharedPreferences.Editor editor = saves.edit();
         editor.putInt("Barracks", 1);
         editor.putInt("Wood",0);
         editor.putInt("Stone",0);
         editor.putInt("Metal",0);
         editor.commit();
+        */
         int cWood = saves.getInt("Wood", 0);
         int cStone = saves.getInt("Stone", 0);
         int cMetal = saves.getInt("Metal",0);
@@ -58,6 +59,8 @@ public class Barracks extends AppCompatActivity {
         currStone.setText("Stone " + cStone);
         currMetal.setText("Metal " + cMetal);
         bLevel.setText("Level " + cB);
+
+        setImages();
     }
 
 
@@ -159,5 +162,33 @@ public class Barracks extends AppCompatActivity {
         editor.putInt("Metal", myResources.collectMetal());
         editor.commit();
         currMetal.setText("Metal " + saves.getInt("Metal", 0));
+    }
+
+    public void setImages(){
+        SharedPreferences saves = getSharedPreferences("Resource", 0);
+
+        if(saves.getInt("Barracks",1)>=4 && saves.getInt("Barracks",1)<7){
+            backG.setBackgroundResource(R.drawable.stonebarracks);
+        }
+        if(saves.getInt("Barracks",1)>=7){
+            backG.setBackgroundResource(R.drawable.metalbarracks);
+        }
+
+    }
+    public void decrementLevel(View view){
+        SharedPreferences saves = getSharedPreferences(RESOURCE_NAME, 0);
+        SharedPreferences.Editor editor = saves.edit();
+        int currLevel = saves.getInt("Barracks",0);
+        currLevel--;
+        myBuildings.decrementBarracks();
+        editor.putInt("Barracks",currLevel);
+        editor.commit();
+        bLevel.setText("Level " + saves.getInt("Barracks", 1));
+        if(saves.getInt("Barracks",1)<4){
+            backG.setBackgroundResource(R.drawable.woodbarracks);
+        }
+        else if(saves.getInt("Barracks",1)<7){
+            backG.setBackgroundResource(R.drawable.stonebarracks);
+        }
     }
 }

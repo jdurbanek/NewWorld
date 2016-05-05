@@ -8,6 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:padding = "1dp"
+    android:background="@color/wallet_hint_foreground_holo_light"
 
     tools:context="project.mobile.newworld.MainBuilding">
 
@@ -97,6 +98,15 @@
         android:layout_gravity="center_horizontal"
         android:onClick="collectMetal"
         android:layout_below="@+id/currMetal"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decrement Level"
+        android:id="@+id/decrement"
+        android:onClick="decrementLevel"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
