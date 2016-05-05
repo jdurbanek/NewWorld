@@ -79,7 +79,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
         currSteps = settings.getInt("currSteps", 0);
-        numWeeks = settings.getInt("numWeeks", 0); //will use when functional TODO
+        //numWeeks = settings.getInt("numWeeks", 0); //will use when functional TODO
         steps.setText("" + currSteps);
 
         mSensorManager = (SensorManager)
@@ -102,8 +102,8 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
 
         //fake week persistence
-        //ArrayList<Week> weekList = new ArrayList<>();
-        //numWeeks = 0;// take out for final version when num weeks actually changes TODO
+        ArrayList<Week> weekList = new ArrayList<>();
+        numWeeks = 0;// take out for final version when num weeks actually changes TODO
 
 
 
@@ -113,12 +113,13 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
 
             //extremely hard coded to put in dummy data.
+            //String today = formatter.format(newDate);
             Date newDate = new Date();
             Format formatter;
             formatter = new SimpleDateFormat("dd/MM/yyyy");
             today = formatter.format(newDate);
 
-            /*
+
             date = "04/17/2106";
             Week week = new Week(date);
             int dayNum = 17;
@@ -155,12 +156,12 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             }
             weekList.add(week);
             numWeeks++;
-            */
+
         //}
 
 
         //SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
-        /*
+
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("numWeeks",numWeeks);
         for(int t = 0; t < weekList.size(); t++){
@@ -169,10 +170,10 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             editor.commit();
         }
         //editor.commit();
-        */
 
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("numWeeks",numWeeks);
+
+        //SharedPreferences.Editor editor = settings.edit();
+        //editor.putInt("numWeeks",numWeeks);
     }
 
     @Override
@@ -258,7 +259,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-        String strToParse = settings.getString(numWeeks + "", "1");
+/*        String strToParse = settings.getString(numWeeks + "", "1");
         Week currWeek = unparse(strToParse);
         Day newDay = currWeek.getDays().get(currWeek.getDays().size() - 1) ;
         currDistance = currSteps*.000473;
@@ -286,7 +287,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
             currDayTime += (settings.getInt("currDayTime", 0) + currTime);
         }
         editor.putString(numWeeks + "", currWeek.toString());
-
+*/
 
         //add new resources to total resources
         wood += settings.getInt("Wood", 0);
@@ -322,12 +323,12 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         editor.putInt("currSteps", currSteps);
         editor.commit();
         currSteps = 0;// have to persist
-        currTime = 0;
-        currDistance = 0;
+        //currTime = 0;
+        //currDistance = 0;
 
         steps.setText("0");
     }
-
+/*
     public Week unparse(String string){
 
 
@@ -343,7 +344,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         }
         return week;
     }
-
+*/
 
     public void start(View view) {
         //Intent intent = new Intent(this, MyType.class);
