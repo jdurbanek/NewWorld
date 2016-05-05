@@ -96,8 +96,32 @@ public class Weekly extends Fragment {
 
         SharedPreferences settings = this.getActivity().getSharedPreferences(PREF_NAME, 0);
         numWeeks = settings.getInt("numWeeks", 0);
+        dispWeeks.setText("choose from week 1-" + numWeeks );
 
 
+
+        //SharedPreferences settings = getActivity().getSharedPreferences(PREF_NAME, 0);
+        String dispWeek = settings.getString(("1"), "1");
+        String[] arr = dispWeek.split(" ");
+        for(int x = 0; x < arr.length; x++){
+            String tmp = arr[x];
+            String[] tmpArr = tmp.split(",");
+            //date steps time distance
+            tmp = "Date: " + tmpArr[0] + "\n\nSteps: " + tmpArr[1] + " Time: " + tmpArr[2] + " Distance: " + tmpArr[3];
+            arr[x] = tmp;
+        }
+
+
+
+        ArrayList<String> weekList = new ArrayList<>();
+        for(int i = 0; i < arr.length; i++){
+            weekList.add(arr[i]);
+        }
+
+
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, weekList);
+        weeklyList.setAdapter(adapter);
 
 
 

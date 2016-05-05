@@ -245,7 +245,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
         wood = (int)(currSteps * .1);
         stone = (int)(currSteps * .05);
-        metal = (int) (currSteps * .001);
+        metal = (int) (currSteps * .0005);
 
         //preferences "Wood" "Metal" "Stone"
 
@@ -294,11 +294,11 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         String[] tmpArr = timeStr.split(":");
         double ctime = 0;
         if(!(tmpArr.length<3)) {
-            ctime = ((double) Integer.parseInt(tmpArr[0]) + (double) Integer.parseInt(tmpArr[1]) / 60);
+            ctime = ((double) (Integer.parseInt(tmpArr[0])) + ((double) Integer.parseInt(tmpArr[1]) / 60));
         }
 
         int csteps = Integer.parseInt(steps.getText().toString().trim());
-        double cdistance = csteps * .0005;
+        double cdistance = csteps * .001;
         numWeeks = settings.getInt("numWeeks", 1);
         String strWeek = settings.getString(("" + numWeeks), "This no is work " + numWeeks);
 
