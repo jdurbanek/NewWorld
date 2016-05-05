@@ -116,11 +116,9 @@ public class MySettings extends AppCompatActivity {
             final String checkHome = wifi.getBSSID();
             final String currentName = wifi.getSSID();
             // myMAC = wifi.getBSSID();
-            if (myMAC.equals("")) {
-                myMAC = wifi.getBSSID();
-            }
+
             if (!checkHome.equals(myMAC)) {
-                myMAC = wifi.getBSSID();
+
 
                 AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
                 dlgAlert.setMessage("Are you sure you want to update your home to " + currentName + "?");
@@ -129,6 +127,7 @@ public class MySettings extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 //dismiss the dialog
+                                myMAC = checkHome;
                                 setHome = currentName;
                                 currentHome.setText("Current Home: " + setHome);
                             }
@@ -136,7 +135,7 @@ public class MySettings extends AppCompatActivity {
                 dlgAlert.setCancelable(true);
                 dlgAlert.create().show();
             } else {
-                Toast toast = Toast.makeText(getApplicationContext(), "You are already at Home!!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getApplicationContext(), "You are already at Home!! " + myMAC, Toast.LENGTH_LONG);
                 toast.show();
             }
         }else {

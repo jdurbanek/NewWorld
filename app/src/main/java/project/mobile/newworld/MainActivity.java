@@ -43,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
         String name = settings.getString("Name", "");
         //  Toast toast = Toast.makeText(getApplicationContext(), mac, Toast.LENGTH_LONG);
         // toast.show();
-        welcomeName.setText("    Welcome \n" + name);
+        if(!name.equals("")) {
+            welcomeName.setText(name + "!");
+        }else {
+            welcomeName.setText("");
+        }
         BroadcastReceiver br = new WifiBroadcastReceiver(getApplicationContext(), mac);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
