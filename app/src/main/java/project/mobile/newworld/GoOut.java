@@ -11,6 +11,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.SystemClock;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -43,6 +45,8 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
     private String currstatDay;
     private double currDistance;
     private double currTime;
+    private String myMAC = "";
+    private String setHome = "Not set";
 
     Button butnstart, butnreset;
     TextView time;
@@ -99,6 +103,10 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         }else if(myType == 3){
             myText.setText("Biking");
         }
+
+
+        SharedPreferences wifiSettings = getSharedPreferences("BaseInfo", 0);
+        myMAC = wifiSettings.getString("MAC", myMAC);
 
 /*
         //fake week persistence
@@ -182,19 +190,27 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
     }
 
     public void onSensorChanged(SensorEvent event) {
-        Sensor sensor = event.sensor;
-        float[] values = event.values;
-        int value = -1;
+        WifiManager wifiManager =
+                (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifi = wifiManager.getConnectionInfo();
+        final String checkHome = wifi.getSSID();
+        // myMAC = wifi.getBSSID();
+        if(!myMAC.equals(wifi.getBSSID())) {
 
-        if (values.length > 0) {
-            value = (int) values[0];
-        }
+            Sensor sensor = event.sensor;
+            float[] values = event.values;
+            int value = -1;
 
-        if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-            steps.setText("Step Counter Detected : " + value);
-        } else if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
-            // For test only. Only allowed value is 1.0 i.e. for step taken
-            steps.setText("Step Detector Detected : " + value);
+            if (values.length > 0) {
+                value = (int) values[0];
+            }
+
+            if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
+                steps.setText("Step Counter Detected : " + value);
+            } else if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
+                // For test only. Only allowed value is 1.0 i.e. for step taken
+                steps.setText("Step Detector Detected : " + value);
+            }
         }
     }
 
@@ -373,19 +389,28 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         //startActivityForResult(intent, 1);
         //if(butnstart.getText().equals("Start")) butnstart.setText("Stop");
         //else butnstart.setText("Start");
+        WifiManager wifiManager =
+                (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifi = wifiManager.getConnectionInfo();
+        final String checkHome = wifi.getSSID();
+        // myMAC = wifi.getBSSID();
+        System.out.println(wifi.getBSSID() + " tha stuff" + myMAC);
+        if(!myMAC.equals(wifi.getBSSID())) {
+            System.out.println(wifi.getBSSID() + " tha stuff" + myMAC);
 
 
-        if (t == 1) {
-            butnstart.setText("Pause");
-            starttime = SystemClock.uptimeMillis();
-            handler.postDelayed(updateTimer, 0);
-            t = 0;
-        } else {
-            butnstart.setText("Start");
-            //time.setTextColor(Color.BLUE);
-            timeSwapBuff += timeInMilliseconds;
-            handler.removeCallbacks(updateTimer);
-            t = 1;
+            if (t == 1) {
+                butnstart.setText("Pause");
+                starttime = SystemClock.uptimeMillis();
+                handler.postDelayed(updateTimer, 0);
+                t = 0;
+            } else {
+                butnstart.setText("Start");
+                //time.setTextColor(Color.BLUE);
+                timeSwapBuff += timeInMilliseconds;
+                handler.removeCallbacks(updateTimer);
+                t = 1;
+            }
         }
 
     }
