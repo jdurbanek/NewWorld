@@ -41,7 +41,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
     private int currDaySteps;
     private double currDayDistance;
     private double currDayTime;
-    //used to tell when you last comitted your data
+
     private String currstatDay;
     private double currDistance;
     private double currTime;
