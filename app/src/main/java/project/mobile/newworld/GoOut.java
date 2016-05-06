@@ -333,7 +333,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         stone += settings.getInt("Stone", 0);
 
 
-        //save resources
+
         editor.putInt("Wood", wood);
         editor.putInt("Metal", metal);
         editor.putInt("Stone", stone);
