@@ -47,6 +47,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
     private double currTime;
     private String myMAC = "";
     private String setHome = "Not set";
+    private int value;
 
     Button butnstart, butnreset;
     TextView time;
@@ -84,7 +85,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         SharedPreferences settings = getSharedPreferences(PREF_NAME, 0);
         currSteps = 0; //settings.getInt("currSteps", 0);
         //numWeeks = settings.getInt("numWeeks", 0); //will use when functional TODO
-        steps.setText("" + currSteps);
+        steps.setText("0");
 
         mSensorManager = (SensorManager)
                 getSystemService(Context.SENSOR_SERVICE);
@@ -199,17 +200,17 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
             Sensor sensor = event.sensor;
             float[] values = event.values;
-            int value = -1;
+            value = -1;
 
             if (values.length > 0) {
                 value = (int) values[0];
             }
 
             if (sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-                steps.setText("Step Counter Detected : " + value);
+                steps.setText("" + value);
             } else if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
                 // For test only. Only allowed value is 1.0 i.e. for step taken
-                steps.setText("Step Detector Detected : " + value);
+                steps.setText("" + value);
             }
         }
     }
@@ -254,6 +255,8 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
 
     public void restart(View view){
         //persist to file Resourse, Keys: Wood, Stone, Metal, BaseLevel
+
+        currSteps = (Integer.parseInt(steps.getText().toString().trim()));
 
         int wood;
         int stone;
@@ -361,6 +364,7 @@ public class GoOut extends AppCompatActivity implements SensorEventListener {
         editor.putInt("currSteps", currSteps);
         editor.commit();
         currSteps = 0;// have to persist
+        value =0;
         //currTime = 0;
         //currDistance = 0;
 
