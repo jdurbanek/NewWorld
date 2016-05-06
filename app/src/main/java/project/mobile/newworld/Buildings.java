@@ -26,11 +26,7 @@ public class Buildings {
         return this.barracks;
     }
 
-    public int getWall(){
-        return this.wall;
-    }
-
-    public int getFarm(){
+    public int getMessHall(){
         return this.farm;
     }
 
@@ -40,11 +36,22 @@ public class Buildings {
     public void upgradeBarracks(){
         this.barracks++;
     }
-    public void upgradeWall(){
-        this.wall++;
-    }
-    public void upgradeFarm(){
+    public void upgradeMessHall(){
         this.farm++;
+    }
+
+    public void decrementMessHall(){this.farm--;}
+    public void decrementBarracks(){this.barracks--;}
+    public void decrementMainBuilding(){this.mainBuilding--;}
+
+    public void setMBLevel(int ammount){
+        this.mainBuilding = ammount;
+    }
+    public void setBarracksLevel(int ammount){
+        this.barracks = ammount;
+    }
+    public void setMessHallLevel(int ammount){
+        this.farm = ammount;
     }
 
 
