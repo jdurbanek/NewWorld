@@ -8,17 +8,41 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:padding = "1dp"
-    android:background="@android:color/holo_blue_dark"
+    android:background="@drawable/loadscreen"
     tools:context="project.mobile.newworld.MainActivity">
 
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Launch"
+        android:background = "@drawable/launchbutton"
         android:id="@+id/button"
-        android:layout_marginBottom="121dp"
+        android:layout_marginBottom="92dp"
         android:onClick = "launchFirstScreen"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:gravity="center_horizontal"
+        android:id="@+id/welcome"
+        android:layout_marginTop="83dp"
+        android:textSize="32dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Welcome"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:textSize="48dp" />
+
 </RelativeLayout>
